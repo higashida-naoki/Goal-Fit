@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admins, controllers: {
+    sessions: 'admin_side/sessions',
+  }
 
-  devise_for :admins
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'user_side/sessions',
+    registrations: 'user_side/registrations',
+  }
+
   root to: "user_side/homes#top"
   get '/homes/about' => 'user_side/homes#about', as: 'about'
 
