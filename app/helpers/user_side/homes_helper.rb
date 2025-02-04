@@ -1,0 +1,2 @@
+module UserSide::HomesHelper
+end

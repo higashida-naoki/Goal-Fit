@@ -1,0 +1,2 @@
+module UserSide::PostsHelper
+end

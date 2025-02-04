@@ -1,0 +1,2 @@
+module UserSide::RelatiomshipsHelper
+end
