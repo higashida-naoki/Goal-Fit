@@ -14,6 +14,10 @@ class UserSide::UsersController < ApplicationController
   def update
   end
 
-  def destroy
+  def unsubscribe
   end
+
+  def withdraw
+  end
+
 end

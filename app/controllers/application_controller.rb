@@ -4,11 +4,12 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       admin_side_top_path
-    when Customer
+    when User
       root_path
     else
       root_path
     end
   end
 
+  
 end

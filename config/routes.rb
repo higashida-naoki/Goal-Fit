@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/unsubscribe'
+  get 'users/withdraw'
   #管理者用deviseルーティング
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
     sessions: 'admin_side/sessions',
   }
   #ユーザー用deviseルーティング
-  devise_for :users, skip: [:passwords], controllers: {
+  devise_for :users, controllers: {
     sessions: 'user_side/sessions',
     registrations: 'user_side/registrations',
   }
@@ -18,6 +20,9 @@ Rails.application.routes.draw do
   end
 
   #ユーザー用ルーティング
+  get "users/unsubscribe" => "user_side/users#unsubscribe", as: "unsubscribe"
+  patch "users/withdraw" => "user_side/users#withdraw", as: "withdraw"
+
   scope module: :user_side do
     root to: "homes#top"
     get '/homes/about' => 'homes#about', as: 'about'
