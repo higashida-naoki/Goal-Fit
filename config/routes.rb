@@ -1,76 +1,41 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
+  #管理者用deviseルーティング
+  devise_for :admins,skip: [:registrations, :passwords], controllers: {
     sessions: 'admin_side/sessions',
   }
-
-  devise_for :users, controllers: {
+  #ユーザー用deviseルーティング
+  devise_for :users, skip: [:passwords], controllers: {
     sessions: 'user_side/sessions',
     registrations: 'user_side/registrations',
   }
+  
+  #管理者用ルーティング
+  namespace :admin_side do
+    get "top" => "homes#top"
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :trainings, only: [:index, :new, :show, :edit, :create, :update]
+    resources :genres, only: [:index, :edit, :create, :update]
+  end
 
-  root to: "user_side/homes#top"
-  get '/homes/about' => 'user_side/homes#about', as: 'about'
+  #ユーザー用ルーティング
+  scope module: :user_side do
+    root to: "homes#top"
+    get '/homes/about' => 'homes#about', as: 'about'
 
-  namespace :admin_side do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/update'
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+      collection do
+        get "favorites" 
+      end   
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    resources :posts, only: [:index, :show, :edit, :new, :create, :update, :destroy] do
+      resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
+    resources :trainings, only: [:index, :show]
   end
-  namespace :admin_side do
-    get 'trainings/index'
-    get 'trainings/new'
-    get 'trainings/show'
-    get 'trainings/edit'
-    get 'trainings/create'
-    get 'trainings/update'
-  end
-  namespace :admin_side do
-    get 'genres/index'
-    get 'genres/edit'
-    get 'genres/create'
-    get 'genres/update'
-  end
-  namespace :admin_side do
-    get 'homes/top'
-  end
-  namespace :user_side do
-    get 'post_comments/create'
-    get 'post_comments/destroy'
-  end
-  namespace :user_side do
-    get 'relatiomships/create'
-    get 'relatiomships/destroy'
-    get 'relatiomships/followings'
-    get 'relatiomships/followers'
-  end
-  namespace :user_side do
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
-  namespace :user_side do
-    get 'trainings/index'
-    get 'trainings/show'
-  end
-  namespace :user_side do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-    get 'users/favorite'
-    get 'users/update'
-    get 'users/destroy'
-  end
-  namespace :user_side do
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/new'
-    get 'posts/create'
-    get 'posts/update'
-    get 'posts/destroy'
-  end
-  namespace :user_side do
-    get 'homes/top'
-    get 'homes/about'
-  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
