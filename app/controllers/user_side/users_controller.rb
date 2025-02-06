@@ -1,11 +1,20 @@
 class UserSide::UsersController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authenticate_user!
+
   def index
+    @users = User.all
+    @post = Post.new
   end
 
   def show
+    @user = User.find(params[:id])
+    #@posts = @user.posts
+    #@post = Post.new
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def favorite

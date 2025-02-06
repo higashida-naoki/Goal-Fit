@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   end
 
   #ユーザー用ルーティング
+  get "users/information/edit" => "user_side/users#edit", as: "info_edit"
+  patch "users/information" => "user/side/users#update", as: "info_update"
   get "users/unsubscribe" => "user_side/users#unsubscribe", as: "unsubscribe"
   patch "users/withdraw" => "user_side/users#withdraw", as: "withdraw"
 
