@@ -1,2 +1,51 @@
-<h1>UserSide::Posts#new</h1>
-<p>Find me in app/views/user/posts/new.html.erb</p>
+<h1>今日の投稿</h1>
+<%= form_with model: @post, url: posts_path do |f| %>
+  <table class="table">
+    <tr>
+      <td><%= f.label :breakfast, "朝食" %></td>
+      <td><%= f.text_field :breakfast %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :lunch, "昼食" %></td>
+      <td><%= f.text_field :lunch %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :dinner, "夕食" %></td>
+      <td><%= f.text_field :dinner %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :dessert, "間食" %></td>
+      <td><%= f.text_field :dessert %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :calorie_intake, "摂取カロリー" %></td>
+      <td><%= f.text_field :calorie_intake %></td>
+    </tr>
+    <tr>
+
+      <td><%= f.label :weight, "今日の体重" %></td>
+      <td><%= f.text_field :weight %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :body, "今日のBody" %></td>
+      <td><%= f.text_field :body %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :training, "トレーニング" %></td>
+      <td><%= f.text_field :training %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :calories_consumed, "消費カロリー" %></td>
+      <td><%= f.text_field :calories_consumed %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :total_calories, "総カロリー" %></td>
+      <td><%= f.text_field :total_calories %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :effort_point, "努力ポイント" %></td>
+      <td><%= f.text_field :effort_point %></td>
+    </tr>
+  </table>
+  <%= f.submit "投稿する" %>
+<% end %>

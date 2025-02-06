@@ -17,7 +17,7 @@ class UserSide::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def favorite
+  def favorites
   end
 
   def update

@@ -5,11 +5,14 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_side_top_path
     when User
-      root_path
+      user_path
     else
       root_path
     end
   end
 
-  
+  def after_sign_out_path_for(resource)
+    new_user_session_path
+  end
+
 end

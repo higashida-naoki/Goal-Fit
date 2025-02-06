@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/unsubscribe'
-  get 'users/withdraw'
   #管理者用deviseルーティング
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
     sessions: 'admin_side/sessions',
@@ -21,15 +19,16 @@ Rails.application.routes.draw do
 
   #ユーザー用ルーティング
   get "users/information/edit" => "user_side/users#edit", as: "info_edit"
-  patch "users/information" => "user/side/users#update", as: "info_update"
+  patch "users/information" => "user_side/users#update", as: "info_update"
   get "users/unsubscribe" => "user_side/users#unsubscribe", as: "unsubscribe"
   patch "users/withdraw" => "user_side/users#withdraw", as: "withdraw"
+  get "users/favorites" => "user_side/users#favorites", as: "favorites_list"
 
   scope module: :user_side do
     root to: "homes#top"
     get '/homes/about' => 'homes#about', as: 'about'
 
-    resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    resources :users, only: [:index, :show, :update, :destroy] do
       collection do
         get "favorites" 
       end   
@@ -46,3 +45,4 @@ Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
