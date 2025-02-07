@@ -1,0 +1,30 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th>投稿日</th>
+      <th>摂取カロリー</th>
+      <th>消費カロリー</th>
+      <th>総カロリー</th>
+      <th>体重</th>
+      <th>努力ポイント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if posts.present? %>
+      <% posts.each do |post| %>
+        <tr>
+          <td><%= link_to post.created_at.strftime("%Y/%m/%d"), post_path(post) %></td>
+          <td><%= post.calorie_intake %></td>
+          <td><%= post.calories_consumed %></td>
+          <td><%= post.total_calories %></td>
+          <td><%= post.weight %></td>
+          <td><%= post.effort_point %></td>
+        </tr>
+      <% end %>
+      <% else %>
+      <tr>
+        <td colspan="6">投稿がありません。</td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

@@ -1,18 +1,37 @@
-<h1>投稿一覧</h1>
-<table>
-  <tr>
-    <th>ニックネーム</th>
-    <th>進捗度(理想体重との比較)</th>
-    <th>理想の体重</th>
-    <th>現在の体重</th>
-    <th>努力ポイント</th>
-  </tr>
-</table>
-  <% @posts.each do |post| %>
-    <td><%= link_to post.progress,post %></td>
-    <td><%= post.ideal_weight %></td>
-    <td><%= post.current_weight %></td>
-    <td><%= post.effort_point %></td>
-
-
-  <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+    <h2>投稿一覧</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>投稿日</th>
+            <th>ニックネーム</th>
+            <th>進捗度(理想体重との比較)</th>
+            <th>理想の体重</th>
+            <th>現在の体重</th>
+            <th>摂取カロリー</th>
+            <th>消費カロリー</th>
+            <th>総カロリー</th>
+            <th>努力ポイント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+            <tr>
+              <td><%= link_to post.created_at.strftime("%Y/%m/%d"), post_path(post) %></td>
+              <td><%= post.user.nickname %></td>
+              <td><%= post.progress %></td>
+              <td><%= post.user.ideal_weight %></td>
+              <td><%= post.weight %></td>
+              <td><%= post.calorie_intake %></td>
+              <td><%= post.calories_consumed%></td>
+              <td><%= post.total_calories%></td>
+              <td><%= post.effort_point %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

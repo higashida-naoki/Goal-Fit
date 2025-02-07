@@ -1,6 +1,8 @@
-<h1>ユーザー情報</h1>
+<h2>ユーザー情報</h2>
   <%= render 'info', user: @user %>
   <%= link_to "編集する", info_edit_path(@user), class: "btn btn-success" %>
-    
+<h4><%= @user.nickname %>さんの投稿一覧</h4>
+<%= render 'user_side/posts/index', posts: @posts %>
+
 
 

@@ -1,0 +1,54 @@
+<h2>投稿編集</h2>
+<%= form_with model: @post, url: post_path, method: :patch do |f| %>
+  <table>
+    <tr>
+      <th>ニックネーム</th>
+      <td><%= @post.user.nickname %><td>
+    </tr>
+    <tr>
+      <th>朝食</th>
+      <td><%= f.text_field :breakfast %><td>
+    </tr>
+    <tr>
+      <th>昼食</th>
+      <td><%= f.text_field :lunch %><td>
+    </tr>
+    <tr>
+      <th>夕食</th>
+      <td><%= f.text_field :dinner %><td>
+    </tr>
+    <tr>
+      <th>間食</th>
+      <td><%= f.text_field :dessert %><td>
+    </tr>
+    <tr>
+      <th>摂取カロリー</th>
+      <td><%= f.text_field :calorie_intake %><td>
+    </tr>
+    <tr>
+      <th>消費カロリー</th>
+      <td><%= f.text_field :calories_consumed %><td>
+    </tr>
+    <tr>
+      <th>総カロリー</th>
+      <td><%= f.text_field :total_calories %><td>
+    </tr>
+    <tr>
+      <th>進捗度</th>
+      #<td><%= f.text_field :progress %><td>
+    </tr>
+    <tr>
+      <th>今日の体重</th>
+      <td><%= f.text_field :weight %><td>
+    </tr>
+    <tr>
+      <th>今日のBody</th>
+      <td><%= f.text_field :body %><td>
+    </tr>
+    <tr>
+      <th>努力ポイント</th>
+      <td><%= f.text_area :effort_point %><td>
+    </tr>
+  </table>
+  <%= f.submit "編集内容を保存", class: "btn btn-success" %></td>
+<% end %>

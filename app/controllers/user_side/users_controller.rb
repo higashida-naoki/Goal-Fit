@@ -9,8 +9,7 @@ class UserSide::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #@posts = @user.posts
-    #@post = Post.new
+    @posts = @user.posts
   end
 
   def edit
@@ -41,7 +40,7 @@ class UserSide::UsersController < ApplicationController
     user = current_user
     user.update(is_active: false)
     reset_session
-    redirect_to root_path
+    redirect_to new_user_registration_path
   end
 
   private

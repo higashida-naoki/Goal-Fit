@@ -5,6 +5,10 @@
     <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
   </tr>
   <tr>
+    <th>投稿者</th>
+    <td><%= link_to @post.user.nickname, user_path(current_user) %></td>
+  </tr>
+  <tr>
       <th>朝食</th>
       <td><%= @post.breakfast %></td>
     </tr>
@@ -48,4 +52,8 @@
       <th>努力ポイント</th>
       <td><%= @post.effort_point %>
     </th>
+    <% if @post.user == current_user %>
+      <td><%= link_to '編集する', edit_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
+      <td><%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
+    <% end %>
  <table>
