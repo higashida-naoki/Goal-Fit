@@ -1,5 +1,6 @@
 <h1>ユーザー情報</h1>
   <%= render 'info', user: @user %>
+  <%= link_to "編集する", info_edit_path(@user), class: "btn btn-success" %>
     
 
 

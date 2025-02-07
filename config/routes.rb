@@ -22,14 +22,13 @@ Rails.application.routes.draw do
   patch "users/information" => "user_side/users#update", as: "info_update"
   get "users/unsubscribe" => "user_side/users#unsubscribe", as: "unsubscribe"
   patch "users/withdraw" => "user_side/users#withdraw", as: "withdraw"
-  get "users/favorites" => "user_side/users#favorites", as: "favorites_list"
 
   scope module: :user_side do
     root to: "homes#top"
     get '/homes/about' => 'homes#about', as: 'about'
 
     resources :users, only: [:index, :show, :update, :destroy] do
-      collection do
+      member do
         get "favorites" 
       end   
       resource :relationships, only: [:create, :destroy]

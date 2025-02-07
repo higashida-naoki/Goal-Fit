@@ -1,2 +1,51 @@
-<h1>UserSide::Posts#show</h1>
-<p>Find me in app/views/user/posts/show.html.erb</p>
+<h2>投稿詳細</h2>
+<table>
+  <tr>
+    <th><投稿日></th>
+    <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
+  </tr>
+  <tr>
+      <th>朝食</th>
+      <td><%= @post.breakfast %></td>
+    </tr>
+    <tr>
+      <th>昼食</th>
+      <td><%= @post.lunch %></td>
+    </tr>
+    <tr>
+      <th>夕食</th>
+      <td><%= @post.dinner %></td>
+    </tr>
+    <tr>
+      <th>間食</th>
+      <td><%= @post.dessert %></td>
+    </tr>
+    <tr>
+      <th>摂取カロリー</th>
+      <td><%= @post.calorie_intake %></td>
+    </tr>
+    <tr>
+      <th>消費カロリー</th>
+      <td><%= @post.calories_consumed %></td>
+    </tr>
+    <tr>
+      <th>総カロリー</th>
+      <td><%= @post.total_calories %></td>
+    </tr>
+    <tr>
+      <th>進捗度</th>
+      #<td><%= @post.progress %></td>
+    </tr>
+    <tr>
+      <th>今日の体重</th>
+      <td><%= @post.weight %></td>
+    </tr>
+    <tr>
+      <th>今日のBody</th>
+      <td><%= @post.body %></td>
+    </tr>
+    <tr>
+      <th>努力ポイント</th>
+      <td><%= @post.effort_point %>
+    </th>
+ <table>

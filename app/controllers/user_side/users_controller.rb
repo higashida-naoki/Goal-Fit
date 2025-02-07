@@ -1,5 +1,5 @@
 class UserSide::UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe, :withdraw]
   before_action :authenticate_user!
 
   def index
@@ -14,16 +14,21 @@ class UserSide::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def favorites
+    @user = User.find(params[:id])
+    @post = Post.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+
   end
 
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_path
+      redirect_to user_path(current_user)
     else
       render info_edit_path
     end
@@ -40,6 +45,14 @@ class UserSide::UsersController < ApplicationController
   end
 
   private
+
+  def ensure_correct_user
+    @user = current_user
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
+
 
   def user_params
     params.require(:user).permit(:name, :nickname, :introduction, :height, :current_weight, :ideal_weight, :target_calorie_intake, :target_calories_consumed, :email, :is_active)

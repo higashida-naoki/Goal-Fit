@@ -1,6 +1,18 @@
 <h1>投稿一覧</h1>
+<table>
+  <tr>
+    <th>ニックネーム</th>
+    <th>進捗度(理想体重との比較)</th>
+    <th>理想の体重</th>
+    <th>現在の体重</th>
+    <th>努力ポイント</th>
+  </tr>
+</table>
   <% @posts.each do |post| %>
-    <td><%= post.weight %></td>
+    <td><%= link_to post.progress,post %></td>
+    <td><%= post.ideal_weight %></td>
+    <td><%= post.current_weight %></td>
+    <td><%= post.effort_point %></td>
 
 
   <% end %>

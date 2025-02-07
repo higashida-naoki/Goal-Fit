@@ -26,9 +26,13 @@ class UserSide::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    user_path
+    user_path(resource)
   end
 
+
+  def configure_sign_in_params
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
+  end
   private
 
   def user_state

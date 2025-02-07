@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2025_02_04_050315) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "training_id"
+    t.integer "user_id"
     t.string "breakfast"
     t.string "lunch"
     t.string "dinner"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2025_02_04_050315) do
     t.integer "progress"
     t.integer "weight"
     t.string "body"
-    t.text "effoort_point"
+    t.text "effort_point"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
