@@ -14,18 +14,23 @@
     </tr>
     <tr>
       <th>現在の体重</th>
-      <td><%= user.current_weight %> kg</td>
+      <!-- 最新の投稿の体重が反映される -->
+      <td><%=@user.latest_weight %> kg</td>
     </tr>
     <tr>
       <th>理想の体重</th>
       <td><%= user.ideal_weight %> kg</td>
     </tr>
     <tr>
+      <th>進捗度</th>
+      <td><%= @user.progress.round(2) %> %</td>
+    </tr>
+    <tr>
       <th>1日の目標摂取カロリー</th>
-      <td><%= user.target_calorie_intake %> kcal</td>
+      <td><%= number_with_delimiter(user.target_calorie_intake) %> kcal</td>
     </tr>
     <tr>
       <th>1日の目標消費カロリー</th>
-      <td><%= user.target_calories_consumed %> kcal</td>
+      <td><%= number_with_delimiter(user.target_calories_consumed) %> kcal</td>
     </tr> 
   </table>

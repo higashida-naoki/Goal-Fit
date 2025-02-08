@@ -1,4 +1,13 @@
-<h2>ユーザー情報</h2>
+<h2><%= @user.nickname %>さんの情報</h2>
+<table>
+  <tr>
+    <th>現在のBMI</th>
+    <td><%= @user.bmi %>(適正値：22)</td>
+  </tr>
+  <tr>
+    <th>目安適正体重</th>
+    <td><%= @user.ideal_weight_calculated.round(1) %>kg</td>
+</table>
   <%= render 'info', user: @user %>
   <% if current_user.id == @user.id %>
     <%= link_to "編集する", edit_user_path(current_user), class: "btn btn-success" %>

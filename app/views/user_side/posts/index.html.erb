@@ -24,9 +24,9 @@
               <td><%= post.progress %></td>
               <td><%= post.user.ideal_weight %></td>
               <td><%= post.weight %></td>
-              <td><%= post.calorie_intake %></td>
-              <td><%= post.calories_consumed%></td>
-              <td><%= post.total_calories%></td>
+              <td><%= number_with_delimiter(post.calorie_intake) %></td>
+              <td><%= number_with_delimiter(post.calories_consumed)%></td>
+              <td><%= number_with_delimiter(post.total_calories)%></td>
               <td><%= post.effort_point %></td>
             </tr>
           <% end %>
