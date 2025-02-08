@@ -6,7 +6,7 @@
   </tr>
   <tr>
     <th>投稿者</th>
-    <td><%= link_to @post.user.nickname, user_path(current_user) %></td>
+    <td><%= link_to @post.user.nickname, user_path(@user) %></td>
   </tr>
   <tr>
       <th>朝食</th>

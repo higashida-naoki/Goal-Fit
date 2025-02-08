@@ -1,6 +1,6 @@
 class UserSide::UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe, :withdraw]
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :unsubscribe, :withdraw]
 
   def index
     @users = User.all
@@ -29,7 +29,7 @@ class UserSide::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(current_user)
     else
-      render info_edit_path
+      render "user_side/users/edit"
     end
   end
 
@@ -46,7 +46,7 @@ class UserSide::UsersController < ApplicationController
   private
 
   def ensure_correct_user
-    @user = current_user
+    @user = User.find(params[:id])
     unless @user == current_user
       redirect_to user_path(current_user)
     end

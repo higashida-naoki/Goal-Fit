@@ -17,6 +17,7 @@ class UserSide::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @user = @post.user
   end
 
   def create
@@ -26,12 +27,13 @@ class UserSide::PostsController < ApplicationController
       redirect_to post_path(@post), notice: "投稿が完了しました！"
     else
       @posts = Post.all
-      render 'index'
+      render 'new'
     end
   end
 
   def update
     @post = Post.find(params[:id])
+    @user = @post.user
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "You have updated book successfully."
     else

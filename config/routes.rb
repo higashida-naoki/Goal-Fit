@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   end
 
   #ユーザー用ルーティング
-  get "users/information/edit" => "user_side/users#edit", as: "info_edit"
   patch "users/information" => "user_side/users#update", as: "info_update"
   get "users/unsubscribe" => "user_side/users#unsubscribe", as: "unsubscribe"
   patch "users/withdraw" => "user_side/users#withdraw", as: "withdraw"
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get '/homes/about' => 'homes#about', as: 'about'
 
-    resources :users, only: [:index, :show, :update, :destroy] do
+    resources :users, only: [:edit, :index, :show, :update, :destroy] do
       member do
         get "favorites" 
       end   
