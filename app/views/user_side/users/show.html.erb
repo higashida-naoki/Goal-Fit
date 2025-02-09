@@ -8,10 +8,46 @@
     <th>目安適正体重</th>
     <td><%= @user.ideal_weight_calculated.round(1) %>kg</td>
 </table>
-  <%= render 'info', user: @user %>
+
+<h4></h4>
+<canvas id="lineChart"></canvas>
+<script>
+let lineCtx = document.getElementById("lineChart");
+let xDates = <%= raw @x_dates.to_json %>;
+let yDates = <%= raw @y_dates.to_json %>;
+// 線グラフの設定
+let lineConfig = {
+  type: 'line',
+  data: {
+    // ※labelとデータの関係は得にありません
+    labels:　xDates,
+    datasets: [{
+      label: 'Red',
+      data: yDates,
+      borderColor: '#f88',
+    },],
+  },
+  options: {
+    scales: {
+      // Y軸の最大値・最小値、目盛りの範囲などを設定する
+      y: {
+        suggestedMin: 0,
+        suggestedMax: 100,
+        ticks: {
+          stepSize: 10,   
+        }
+      }
+    },
+  },  
+};
+let lineChart = new Chart(lineCtx, lineConfig);
+</script>
+
+<%= render 'info', user: @user %>
   <% if current_user.id == @user.id %>
     <%= link_to "編集する", edit_user_path(current_user), class: "btn btn-success" %>
   <% end %>
+
 <h4><%= @user.nickname %>さんの投稿一覧</h4>
 <%= render 'user_side/posts/index', posts: @posts %>
 

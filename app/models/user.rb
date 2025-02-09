@@ -35,6 +35,17 @@ class User < ApplicationRecord
 
   #理想体重と現在の体重の進捗度
   def progress
-    (ideal_weight / latest_weight) * 100
+    (1 - (latest_weight - ideal_weight) / (current_weight - ideal_weight).to_f) * 100.round(2)
+  end
+
+  def progress_data
+    return [] if posts.empty?
+
+    posts.order(:created_at).map do |post|
+      {
+        date: post.created_at.to_date,
+        progress: (1 - (post.weight - ideal_weight) / (current_weight - ideal_weight) * 100).round(2)
+      }
+    end
   end
 end

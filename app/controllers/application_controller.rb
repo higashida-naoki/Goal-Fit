@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource)
-    about_path
+    about_path(resource)
   end
 
 end

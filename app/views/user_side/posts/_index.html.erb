@@ -6,6 +6,7 @@
       <th>消費カロリー</th>
       <th>総カロリー</th>
       <th>体重</th>
+      <th>進捗度</th>
       <th>努力ポイント</th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
           <td><%= number_with_delimiter(post.calories_consumed) %></td>
           <td><%= number_with_delimiter(post.total_calories) %></td>
           <td><%= post.weight %></td>
+          <td><%= post.user.progress %>
           <td><%= post.effort_point %></td>
         </tr>
       <% end %>

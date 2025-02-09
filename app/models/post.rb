@@ -6,4 +6,6 @@ class Post < ApplicationRecord
   #新規投稿時のバリデーション
   validates :calorie_intake, :weight, :calories_consumed, presence: { message: 'は必須項目です。' }
 
+  def post_progress
+  end
 end

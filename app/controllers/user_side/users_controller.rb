@@ -4,19 +4,24 @@ class UserSide::UsersController < ApplicationController
 
   def index
     @users = User.all
-    @post = Post.new
+    @post = Post.new  
   end
-
+  
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order(created_at: :desc)
+    @y_dates = current_user.posts.where("created_at >= ?", 1.week.ago).map do  |post|
+      ideal_weight = current_user.ideal_weight
+      100 * (ideal_weight - (post.weight - ideal_weight).abs) / ideal_weight
+    end
+    @x_dates =  current_user.posts.where("created_at >= ?", 1.week.ago).map {| post | post.created_at.strftime("%Y年%m月%d日")}
   end
 
   def edit
     @user = current_user
   end
 
-  def favorites
+   def favorites
     @user = User.find(params[:id])
     @post = Post.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
