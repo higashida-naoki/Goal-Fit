@@ -2,11 +2,11 @@
   <thead>
     <tr>
       <th>投稿日</th>
-      <th>摂取カロリー</th>
-      <th>消費カロリー</th>
-      <th>総カロリー</th>
-      <th>体重</th>
-      <th>進捗度</th>
+      <th>摂取カロリー(kcal)</th>
+      <th>消費カロリー(kcal)</th>
+      <th>総カロリー(kcal)</th>
+      <th>体重(kg)</th>
+      <th>進捗率(%)</th>
       <th>努力ポイント</th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
           <td><%= number_with_delimiter(post.calories_consumed) %></td>
           <td><%= number_with_delimiter(post.total_calories) %></td>
           <td><%= post.weight %></td>
-          <td><%= post.user.progress %>
+          <td><%= post.index_progress %>
           <td><%= post.effort_point %></td>
         </tr>
       <% end %>

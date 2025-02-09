@@ -10,11 +10,12 @@ class UserSide::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order(created_at: :desc)
-    @y_dates = current_user.posts.where("created_at >= ?", 1.week.ago).map do  |post|
-      ideal_weight = current_user.ideal_weight
+    @y_dates = @user.posts.where("created_at >= ?", 1.week.ago).map do  |post|
+      #体重を減らしたい人、増やしたい人どちらも使えるように絶対値を参照するようにしている
+      ideal_weight = @user.ideal_weight
       100 * (ideal_weight - (post.weight - ideal_weight).abs) / ideal_weight
     end
-    @x_dates =  current_user.posts.where("created_at >= ?", 1.week.ago).map {| post | post.created_at.strftime("%Y年%m月%d日")}
+    @x_dates =  @user.posts.where("created_at >= ?", 1.week.ago).map {| post | post.created_at.strftime("%Y年%m月%d日")}
   end
 
   def edit
