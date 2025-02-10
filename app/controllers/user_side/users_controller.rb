@@ -9,13 +9,10 @@ class UserSide::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order(created_at: :desc)
-    @y_dates = @user.posts.where("created_at >= ?", 1.week.ago).map do  |post|
-      #体重を減らしたい人、増やしたい人どちらも使えるように絶対値を参照するようにしている
-      ideal_weight = @user.ideal_weight
-      100 * (ideal_weight - (post.weight - ideal_weight).abs) / ideal_weight
-    end
-    @x_dates =  @user.posts.where("created_at >= ?", 1.week.ago).map {| post | post.created_at.strftime("%Y年%m月%d日")}
+    @posts = @user.posts.where("created_at >= ?", 1.week.ago).order(created_at: :desc)
+
+    @y_dates = @posts.map(&:index_progress)
+    @x_dates = @posts.map { |post| post.created_at.strftime("%m/%d") }
   end
 
   def edit
@@ -33,7 +30,7 @@ class UserSide::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to user_path(current_user)
+      redirect_to user_path(@user)
     else
       render "user_side/users/edit"
     end
@@ -60,7 +57,7 @@ class UserSide::UsersController < ApplicationController
 
 
   def user_params
-    params.require(:user).permit(:name, :nickname, :introduction, :height, :current_weight, :ideal_weight, :target_calorie_intake, :target_calories_consumed, :email, :is_active)
+    params.require(:user).permit(:image, :name, :nickname, :introduction, :height, :current_weight, :ideal_weight, :target_calorie_intake, :target_calories_consumed, :email, :is_active)
   end
 
 end

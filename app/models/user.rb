@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_one_attached :image
 
   #新規登録時のバリデーション
   validates :name, :nickname, :height, :current_weight, :ideal_weight, presence: { message: 'は必須項目です。' }
@@ -36,6 +37,10 @@ class User < ApplicationRecord
   #理想体重と現在の体重を比較した進捗率
   def progress
     100 * (ideal_weight - (latest_weight - ideal_weight).abs) / ideal_weight
+  end
+
+  def get_profile_image
+    (image.attached?) ? image : 'no_image.jpg'
   end
   
 end

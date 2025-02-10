@@ -1,32 +1,41 @@
-<table class='table'>
-  <thead>
-    <tr>
-      <th>投稿日</th>
-      <th>摂取カロリー(kcal)</th>
-      <th>消費カロリー(kcal)</th>
-      <th>総カロリー(kcal)</th>
-      <th>体重(kg)</th>
-      <th>進捗率(%)</th>
-      <th>努力ポイント</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if posts.present? %>
-      <% posts.each do |post| %>
-        <tr>
-          <td><%= link_to post.created_at.strftime("%Y/%m/%d"), post_path(post) %></td>
-          <td><%= number_with_delimiter(post.calorie_intake) %></td>
-          <td><%= number_with_delimiter(post.calories_consumed) %></td>
-          <td><%= number_with_delimiter(post.total_calories) %></td>
-          <td><%= post.weight %></td>
-          <td><%= post.index_progress %>
-          <td><%= post.effort_point %></td>
-        </tr>
-      <% end %>
-      <% else %>
-      <tr>
-        <td colspan="6">投稿がありません。</td>
-      </tr>
-      <% end %>
-  </tbody>
-</table>
+<div class="cotainer">
+  <div class="row">
+    <h4><%= @user.nickname %>さんの投稿一覧</h4>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>投稿日</th>
+            <th>摂取カロリー(kcal)</th>
+            <th>消費カロリー(kcal)</th>
+            <th>総カロリー(kcal)</th>
+            <th>体重(kg)</th>
+            <th>進捗率(%)</th>
+            <th>努力ポイント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if posts.present? %>
+            <% posts.each do |post| %>
+              <tr>
+                <td><%= link_to post.created_at.strftime("%Y/%m/%d"), post_path(post) %></td>
+                <td><%= number_with_delimiter(post.calorie_intake) %></td>
+                <td><%= number_with_delimiter(post.calories_consumed) %></td>
+                <td><%= number_with_delimiter(post.total_calories) %></td>
+                <td><%= post.weight %></td>
+                <td><%= post.index_progress %>
+                <td><%= post.effort_point %></td>
+              </tr>
+            <% end %>
+            <% else %>
+            <tr>
+              <td colspan="6">投稿がありません。</td>
+            </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
