@@ -8,21 +8,22 @@ class UserSide::UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.where("created_at >= ?", 1.week.ago).order(created_at: :desc)
-
-    @y_dates = @posts.map(&:index_progress)
-    @x_dates = @posts.map { |post| post.created_at.strftime("%m/%d") }
+    #グラフは昇順（古い順）
+    posts_for_graph = @user.posts.where("created_at >= ?", 1.week.ago).order(created_at: :asc)
+    @y_dates = posts_for_graph.map(&:index_progress)
+    @x_dates = posts_for_graph.map { |post| post.created_at.strftime("%m/%d") }
+    #投稿一覧は降順（新しい順）
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(7)
   end
 
   def edit
     @user = current_user
   end
 
-   def favorites
+  def favorites
     @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorites)
-
+    favorite_post_ids = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.includes(:post_comments).where(id: favorite_post_ids)
   end
 
   def update

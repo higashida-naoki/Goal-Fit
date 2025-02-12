@@ -9,51 +9,62 @@
     <td><%= link_to @post.user.nickname, user_path(@user) %></td>
   </tr>
   <tr>
-      <th>朝食</th>
-      <td><%= @post.breakfast %></td>
-    </tr>
-    <tr>
-      <th>昼食</th>
-      <td><%= @post.lunch %></td>
-    </tr>
-    <tr>
-      <th>夕食</th>
-      <td><%= @post.dinner %></td>
-    </tr>
-    <tr>
-      <th>間食</th>
-      <td><%= @post.dessert %></td>
-    </tr>
-    <tr>
-      <th>摂取カロリー</th>
-      <td><%= number_with_delimiter(@post.calorie_intake) %> kcal</td>
-    </tr>
-    <tr>
-      <th>消費カロリー</th>
-      <td><%= number_with_delimiter(@post.calories_consumed) %> kcal</td>
-    </tr>
-    <tr>
-      <th>カロリー収支</th>
-      <td><%= number_with_delimiter(@post.total_calories) %> kcal</td>
-    </tr>
-    <tr>
-      <th>進捗度</th>
-      <td><%= @post.index_progress %> %</td>
-    </tr>
-    <tr>
-      <th>今日の体重</th>
-      <td><%= @post.weight %> kg</td>
-    </tr>
-    <tr>
-      <th>今日のBody</th>
-      <td><%= @post.body %></td>
-    </tr>
-    <tr>
-      <th>努力ポイント</th>
-      <td><%= @post.effort_point %>
-    </th>
-    <% if @post.user == current_user %>
-      <td><%= link_to '編集する', edit_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
-      <td><%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
-    <% end %>
- <table>
+    <th>朝食</th>
+    <td><%= @post.breakfast %></td>
+  </tr>
+  <tr>
+    <th>昼食</th>
+    <td><%= @post.lunch %></td>
+  </tr>
+  <tr>
+    <th>夕食</th>
+    <td><%= @post.dinner %></td>
+  </tr>
+  <tr>
+    <th>間食</th>
+    <td><%= @post.dessert %></td>
+  </tr>
+  <tr>
+    <th>摂取カロリー</th>
+    <td><%= number_with_delimiter(@post.calorie_intake) %> kcal</td>
+  </tr>
+  <tr>
+    <th>消費カロリー</th>
+    <td><%= number_with_delimiter(@post.calories_consumed) %> kcal</td>
+  </tr>
+  <tr>
+    <th>カロリー収支</th>
+    <td><%= number_with_delimiter(@post.total_calories) %> kcal</td>
+  </tr>
+  <tr>
+    <th>進捗度</th>
+    <td><%= @post.index_progress %> %</td>
+  </tr>
+  <tr>
+    <th>今日の体重</th>
+    <td><%= @post.weight %> kg</td>
+  </tr>
+  <tr>
+    <th>今日のBody</th>
+    <td><%= @post.body %></td>
+  </tr>
+  <tr>
+    <th>努力ポイント</th>
+    <td><%= @post.effort_point %>
+  </tr>
+  <tr>
+    <th>いいね数</th>
+    <td><%= render "user_side/favorites/btn", post: @post %></td>
+  </tr>
+  <tr>
+    <th>コメント数</th>
+    <td>💬 <%= @post.post_comments.count %></td>
+  </tr>
+  <% if @post.user == current_user %>
+    <td><%= link_to '編集する', edit_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
+    <td><%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
+  <% end %>
+</table>
+
+<%= render "user_side/post_comments/index", post: @post %>
+<%= render "user_side/post_comments/form", post: @post, post_comment: @book_comment %>

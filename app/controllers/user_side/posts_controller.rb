@@ -1,14 +1,16 @@
 class UserSide::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  
   def index
-    @posts = Post.order(created_at: :desc)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(7)
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
     @posts = @post.user.posts
+    @post_comment = PostComment.new
   end
 
   def new

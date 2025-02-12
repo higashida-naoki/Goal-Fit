@@ -15,6 +15,7 @@
             <th>進捗率(％)</th>
             <th>努力ポイント</th>
             <th>いいね</th>
+            <th>コメント</th>
             </tr>
         </thead>
         <tbody>
@@ -28,20 +29,25 @@
                   <%= number_with_delimiter(post.total_calories) %>
                 </td>
                 <td><%= post.weight %></td>
-                <td><%= post.index_progress %>
+                <td><%= post.index_progress %></td>
                 <td><%= post.effort_point %></td>
                 <td id=<%= "favorite-" + post.id.to_s %> >
                   <%= render "user_side/favorites/btn", post: post %>
                 </td>
+                <td>💬 <%= post.post_comments.count %></td>
               </tr>
             <% end %>
-            <% else %>
+          <% else %>
             <tr>
               <td colspan="6">投稿がありません。</td>
             </tr>
-            <% end %>
+          <% end %>
         </tbody>
+        
       </table>
     </div>
   </div>
+  <div class= "row justify-content-center" >
+  <div class= "pagination" >
+  <%= paginate @posts %>
 </div>

@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     end
     resources :trainings, only: [:index, :show]
   end
+
+  get 'searches/search'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

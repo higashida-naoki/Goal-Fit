@@ -14,6 +14,7 @@
             <th>カロリー収支(kcal)</th>
             <th>努力ポイント</th>
             <th>いいね</th>
+            <th>コメント</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@
               <td id=<%= "favorite-" + post.id.to_s %> >
                 <%= render "user_side/favorites/btn", post: post %>
               </td>
+              <td>💬 <%= post.post_comments.count %></td>
             </tr>
           <% end %>
         </tbody>
