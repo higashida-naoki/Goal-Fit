@@ -36,9 +36,8 @@
             <td><%= f.text_field :calorie_intake %></td>
           </tr>
           <tr>
-
             <td><%= f.label :weight, "今日の体重" %></td>
-            <td><%= f.text_field :weight %></td>
+            <td><%= f.number_field :weight, step: 0.01, min: 0, value: @post.weight %></td>
           </tr>
           <tr>
             <td><%= f.label :body, "今日のBody" %></td>
@@ -47,10 +46,6 @@
           <tr>
             <td><%= f.label :calories_consumed, "消費カロリー" %></td>
             <td><%= f.text_field :calories_consumed %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :total_calories, "総カロリー" %></td>
-            <td><%= f.text_field :total_calories %></td>
           </tr>
           <tr>
             <td><%= f.label :effort_point, "努力ポイント" %></td>

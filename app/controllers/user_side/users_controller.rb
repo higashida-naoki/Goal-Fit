@@ -4,7 +4,6 @@ class UserSide::UsersController < ApplicationController
 
   def index
     @users = User.all
-    @post = Post.new  
   end
   
   def show
@@ -21,7 +20,6 @@ class UserSide::UsersController < ApplicationController
 
    def favorites
     @user = User.find(params[:id])
-    @post = Post.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
 

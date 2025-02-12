@@ -13,4 +13,12 @@ class Post < ApplicationRecord
     100 * (ideal_weight - (weight - ideal_weight).abs) / ideal_weight
   end
 
+  def total_calories
+    calories_consumed - calorie_intake
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
 end

@@ -26,23 +26,23 @@
     </tr>
     <tr>
       <th>摂取カロリー</th>
-      <td><%= @post.calorie_intake %></td>
+      <td><%= number_with_delimiter(@post.calorie_intake) %> kcal</td>
     </tr>
     <tr>
       <th>消費カロリー</th>
-      <td><%= @post.calories_consumed %></td>
+      <td><%= number_with_delimiter(@post.calories_consumed) %> kcal</td>
     </tr>
     <tr>
-      <th>総カロリー</th>
-      <td><%= @post.total_calories %></td>
+      <th>カロリー収支</th>
+      <td><%= number_with_delimiter(@post.total_calories) %> kcal</td>
     </tr>
     <tr>
       <th>進捗度</th>
-      #<td><%= @post.progress %></td>
+      <td><%= @post.index_progress %> %</td>
     </tr>
     <tr>
       <th>今日の体重</th>
-      <td><%= @post.weight %></td>
+      <td><%= @post.weight %> kg</td>
     </tr>
     <tr>
       <th>今日のBody</th>
