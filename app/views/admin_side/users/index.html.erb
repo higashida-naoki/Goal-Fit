@@ -1,2 +1,45 @@
-<h1>AdminSide::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class="container">
+    </br>
+    <div class="row">
+        <div class="col-2">
+            <h2>会員一覧</h2>
+        </div>
+        <div class="col-10">
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <table class="table table-border">
+            <thead class="table-secondary">
+                <tr>
+                    <th class="col-1">会員ID</th>
+                    <th class="col-2">名前</th>
+                    <th class="col-2">ニックネーム</th>
+                    <th class="col-1">進捗度(％)</th>
+                    <th class="col-3">メールアドレス</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                    <tr>
+                        <td class="col-1"><%= user.id %></td>
+                        <td class="col-2">
+                          <%= link_to admin_side_user_path(user) do %>
+                            <%= user.name %>
+                          <% end %>
+                        </td>
+                        <td class="col-2">
+                          <%= user.nickname %>
+                        </td>
+                        <td class="col-1">
+                          <%= user.latest_weight %>
+                        </td>
+                        <td class="col-3"><%= user.email %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <%= paginate @users %>
+    </div>
+</div>
+

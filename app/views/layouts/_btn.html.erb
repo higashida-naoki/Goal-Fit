@@ -1,5 +1,20 @@
 <ul class="d-flex list-unstyled justify-content-end">
-  <% if user_signed_in? %>
+
+  <% if admin_signed_in? %>
+    <% if request.fullpath.include? "/admin" %>
+      <li class="nav-item me-3">
+        <%= link_to 'ユーザー一覧', admin_side_users_path, class: 'btn btn-outline-dark' %>
+      </li>
+      <li class="nav-item me-3">
+        <%= link_to '投稿一覧', admin_side_posts_path, class: 'btn btn-outline-dark' %>
+      </li>
+    <% else %>
+      <li class="nav-item me-3">
+        <%= link_to '管理者ページ', admin_side_posts_path, class: 'btn btn-outline-dark' %>
+      </li>
+    <% end %>
+
+  <% elsif user_signed_in? %>
     <li class="nav-item me-3">
       <%= link_to 'ユーザーページ', user_path(current_user), class: 'btn btn-outline-dark' %>
     </li>
@@ -28,5 +43,7 @@
     <li class="nav-item me-3">
       <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-dark' %>
     </li>
+
+    
   <% end %>
 </ul>
