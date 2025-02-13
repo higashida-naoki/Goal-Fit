@@ -34,7 +34,7 @@
                 <td id=<%= "favorite-" + post.id.to_s %> >
                   <%= render "user_side/favorites/btn", post: post %>
                 </td>
-                <td>💬 <%= post.post_comments.count %></td>
+                <td>💬 <%= link_to post.post_comments.count, post_path(post) %></td>
               </tr>
             <% end %>
           <% else %>

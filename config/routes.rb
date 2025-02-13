@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :trainings, only: [:index, :new, :show, :edit, :create, :update]
     resources :genres, only: [:index, :edit, :create, :update]
-    resources :posts, only: [:index, :shoow, :edit, :update]
+    resources :posts, only: [:index, :show, :edit, :update]
   end
 
   #ユーザー用ルーティング

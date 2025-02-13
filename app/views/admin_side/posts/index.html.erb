@@ -1,0 +1,52 @@
+<div class="container">
+    </br>
+    <div class="row">
+        <div class="col-2">
+            <h2>投稿一覧</h2>
+        </div>
+        <div class="col-10">
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <table class="table table-border">
+            <thead class="table-secondary">
+                <tr>
+                    <th class="col-2">投稿日</th>
+                    <th class="col-2">ニックネーム</th>
+                    <th class="col-1">体重</th>
+                    <th class="col-1">進捗率(％)</th>
+                    <th class="col-2">カロリー収支(kcal)</th>
+                    <th class="col-2">努力ポイント</th>
+                    <th class="col-1">いいね数</th>
+                    <th class="col-1">コメント数</th>
+                </tr>
+            </thead>
+            <tbody>
+          <% if @posts.present? %>
+            <% @posts.each do |post| %>
+              <tr>
+                <td><%= link_to post.created_at.strftime("%Y/%m/%d"), admin_side_post_path(post) %></td>
+                <td><%= post.user.nickname %></td>
+                <td><%= post.weight %></td>
+                <td><%= post.index_progress %></td>
+                <td class="text-center <%= post.total_calories.negative? ? 'text-danger' : 'text-success' %>">
+                  <%= number_with_delimiter(post.total_calories) %>
+                </td>
+                <td><%= post.effort_point %></td>
+                <td><span class="text-danger">♡<%= post.favorites.count %></span></td>
+                </td>
+                <td>💬 <%= post.post_comments.count %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="6">投稿がありません。</td>
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
+        <%= paginate @posts %>
+    </div>
+</div>
+

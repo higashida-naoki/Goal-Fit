@@ -8,6 +8,14 @@
             <%= image_tag user.get_profile_image, class: "rounded-circle mb-3", size: "100x100" %>
             <h5 class="card-title"><%= user.nickname %></h5>
             <p class="card-text"><%= user.introduction.presence || "自己紹介はありません" %></p>
+            <p class="card-text">
+              <td>ステータス:</td>
+              <% if user.is_active? %>
+                <span class="text-success">有効</span>
+              <% else %>
+                <span class="text-danger">退会済み</span>
+              <% end %>
+            </p>
             <%= link_to "詳細を見る", user_path(user), class: "btn btn-primary" %>
           </div>
         </div>

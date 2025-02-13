@@ -17,6 +17,8 @@
                     <th class="col-2">ニックネーム</th>
                     <th class="col-1">進捗度(％)</th>
                     <th class="col-3">メールアドレス</th>
+                    <th class="col-1">ステータス</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +37,13 @@
                           <%= user.latest_weight %>
                         </td>
                         <td class="col-3"><%= user.email %></td>
+                        <td class="col-1">
+                            <% if user.is_active == true %>
+                                <p class="text-success">有効</p>
+                            <% else %>
+                                <p class="text-secondary">退会済み</p>
+                            <% end %>
+                        </td>
                     </tr>
                 <% end %>
             </tbody>

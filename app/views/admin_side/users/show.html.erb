@@ -1,2 +1,55 @@
-<h1>AdminSide::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+    </br>
+    <div class="row">
+        <div class="col">
+            <h2><%= @user.name %>さんの会員詳細</h2>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <table class="table table-borderless">
+            <tr>
+              <td class="col-1"><%= image_tag @user.get_profile_image, size:'100x100' %></td>
+            </tr>
+            <tr>
+                <th class="col-3">会員ID</th>
+                <td class="col-9"><%= @user.id %></td>
+            </tr>
+            <tr>
+                <th class="col-3">氏名</th>
+                <td class="col-9"><%= @user.name %></td>
+            </tr>
+            <tr>
+                <th class="col-3">ニックネーム</th>
+                <td class="col-9"><%= @user.nickname %></td>
+            </tr>
+            <tr>
+                <th class="col-3">自己紹介</th>
+                <td class="col-9"><%= @user.introduction %></td>
+            </tr>
+            <tr>
+                <th class="col-3">メールアドレス</th>
+                <td class="col-9"><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th class="col-3">会員ステータス</th>
+              <td class="col-9">
+                <% if @user.is_active == true %>
+                  <p class="text-success">有効</p>
+                <% else %>
+                  <p class="text-secondary">退会済み</p>
+                <% end %>
+              </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <%= link_to "編集する", edit_admin_side_user_path(@user), class: "btn btn-success" %>
+      </div>
+    </div>
+</div>
+
+
+
+
