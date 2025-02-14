@@ -1,25 +1,2 @@
-<h2>新しい運動を追加</h2>
-<%= form_with(model: @exercise, url: admin_side_exercises_path, local: true) do |f| %>
-  <% if @exercise.errors.any? %>
-    <div class="alert alert-danger">
-      <h4>修正が必要な項目があります:</h4>
-      <ul>
-        <% @exercise.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :name, '運動名' %>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :calories, '消費カロリー' %>
-    <%= f.number_field :calories, class: 'form-control' %>
-  </div>
-
-  <%= f.submit '保存', class: 'btn btn-primary' %>
-<% end %>
+<h2>運動を追加</h2>
+<%= render 'form', exercise: @exercise %>

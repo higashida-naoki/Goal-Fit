@@ -4,8 +4,10 @@
 <table class="table mt-3">
   <thead>
     <tr>
-      <th>名前</th>
-      <th>消費カロリー (kcal/30分)</th>
+      <th>運動名</th>
+      <th>効果のある部位</th>
+      <th>消費カロリー(kcal/30分)</th>
+      <th>カテゴリー</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -13,7 +15,9 @@
     <% @exercises.each do |exercise| %>
       <tr>
         <td><%= exercise.name %></td>
+        <td><%= exercise.target_body_part %></td>
         <td><%= exercise.calories %></td>
+        <td><%= exercise.category %></td>
         <td>
           <%= link_to '編集', edit_admin_side_exercise_path(exercise), class: 'btn btn-success btn-sm' %>
           <%= link_to '削除', admin_side_exercise_path(exercise), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn btn-danger btn-sm' %>

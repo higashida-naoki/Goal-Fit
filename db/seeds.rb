@@ -58,11 +58,50 @@ Food.create!([
   { name: "フライドポテト", calories: 312, category: "揚げ物" }
 ])
 
-Exercise.create!([
-  { name: "スクワット", calories: 200 },
-  { name: "腕立て伏せ", calories: 180 },
-  { name: "腹筋", calories: 160 },
-  { name: "背筋", calories: 140 },
-  { name: "ジョギング", calories: 300 },
-  { name: "ウォーキング", calories: 120 },
+Exercise.create([
+  # 有酸素運動
+  { name: "ジョギング", category: "有酸素運動", target_body_part: "全身", calories: 300 },
+  { name: "ウォーキング", category: "有酸素運動", target_body_part: "下半身・心肺機能", calories: 150 },
+  { name: "サイクリング", category: "有酸素運動", target_body_part: "下半身・心肺機能", calories: 250 },
+  { name: "水泳", category: "有酸素運動", target_body_part: "全身", calories: 400 },
+  { name: "縄跳び", category: "有酸素運動", target_body_part: "下半身・心肺機能", calories: 350 },
+  { name: "階段昇降", category: "有酸素運動", target_body_part: "下半身・心肺機能", calories: 200 },
+  { name: "エアロビクス", category: "有酸素運動", target_body_part: "全身", calories: 280 },
+  { name: "ダンス", category: "有酸素運動", target_body_part: "全身", calories: 230 },
+
+  # 自重筋トレ
+  { name: "スクワット", category: "筋トレ（自重）", target_body_part: "太もも・臀部", calories: 200 },
+  { name: "腕立て伏せ（プッシュアップ）", category: "筋トレ（自重）", target_body_part: "胸・腕・肩", calories: 180 },
+  { name: "腹筋（クランチ）", category: "筋トレ（自重）", target_body_part: "腹筋", calories: 100 },
+  { name: "プランク", category: "筋トレ（自重）", target_body_part: "体幹・腹筋", calories: 90 },
+  { name: "ランジ", category: "筋トレ（自重）", target_body_part: "太もも・臀部", calories: 150 },
+  { name: "ヒップリフト", category: "筋トレ（自重）", target_body_part: "臀部・腰", calories: 120 },
+  { name: "サイドプランク", category: "筋トレ（自重）", target_body_part: "体幹・腹斜筋", calories: 80 },
+  { name: "マウンテンクライマー", category: "筋トレ（自重）", target_body_part: "全身・心肺機能", calories: 220 },
+  { name: "バーピー", category: "筋トレ（自重）", target_body_part: "全身・心肺機能", calories: 300 },
+
+  # ウェイトトレーニング
+  { name: "ダンベルカール", category: "筋トレ（ウェイト）", target_body_part: "腕（上腕二頭筋）", calories: 80 },
+  { name: "ベンチプレス", category: "筋トレ（ウェイト）", target_body_part: "胸・腕・肩", calories: 200 },
+  { name: "デッドリフト", category: "筋トレ（ウェイト）", target_body_part: "背中・臀部・太もも", calories: 350 },
+  { name: "スクワット（バーベル）", category: "筋トレ（ウェイト）", target_body_part: "太もも・臀部", calories: 280 },
+  { name: "ショルダープレス", category: "筋トレ（ウェイト）", target_body_part: "肩・腕", calories: 160 },
+  { name: "ラットプルダウン", category: "筋トレ（ウェイト）", target_body_part: "背中", calories: 180 },
+
+  # ストレッチ・ヨガ
+  { name: "ストレッチ", category: "ストレッチ・柔軟", target_body_part: "全身", calories: 50 },
+  { name: "ヨガ（一般的）", category: "ストレッチ・柔軟", target_body_part: "全身", calories: 120 },
+  { name: "ピラティス", category: "ストレッチ・柔軟", target_body_part: "体幹・腹筋", calories: 150 },
+  { name: "太陽礼拝（ヨガ）", category: "ストレッチ・柔軟", target_body_part: "全身", calories: 100 },
+
+  # スポーツ
+  { name: "サッカー", category: "スポーツ", target_body_part: "全身", calories: 400 },
+  { name: "バスケットボール", category: "スポーツ", target_body_part: "全身", calories: 380 },
+  { name: "バドミントン", category: "スポーツ", target_body_part: "全身", calories: 300 },
+  { name: "テニス", category: "スポーツ", target_body_part: "全身", calories: 320 },
+  { name: "ボクシング", category: "スポーツ", target_body_part: "全身・心肺機能", calories: 500 },
+  { name: "柔道", category: "スポーツ", target_body_part: "全身", calories: 450 },
+  { name: "卓球", category: "スポーツ", target_body_part: "全身", calories: 200 },
+  { name: "ゴルフ", category: "スポーツ", target_body_part: "腕・体幹", calories: 180 },
+  { name: "登山", category: "スポーツ", target_body_part: "全身", calories: 420 }
 ])

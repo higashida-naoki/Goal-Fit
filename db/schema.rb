@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_14_050259) do
+ActiveRecord::Schema.define(version: 2025_02_14_135155) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2025_02_14_050259) do
   create_table "exercises", force: :cascade do |t|
     t.string "name"
     t.integer "calories"
+    t.string "category"
+    t.string "target_body_part"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

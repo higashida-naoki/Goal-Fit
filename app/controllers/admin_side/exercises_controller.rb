@@ -40,6 +40,6 @@ class AdminSide::ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.require(:exercise).permit(:name, :calories, :category)
+    params.require(:exercise).permit(:name, :calories, :category, :target_body_part)
   end
 end
