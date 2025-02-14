@@ -1,0 +1,4 @@
+<% if @model == 'user' %>
+	<h3>検索結果 "<%= @content %>"</h3>
+  <%= render 'user_side/users/index', users: @records %>
+<% end %>

@@ -1,6 +1,14 @@
 class SearchesController < ApplicationController
+  before_action :authenticate_user!
+
   def search
-    @word = params[:word]
-    @posts = Post.search_for(@word)
+    @model = params[:model]
+    @content = params[:content]
+    @method = params[:method]
+    if @model == 'user'
+      @records = User.search_for(@content, @method)
+    else
+      @records = []
+    end
   end
 end

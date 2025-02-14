@@ -16,7 +16,13 @@
     <header>
       <%= render 'layouts/btn' %>
     </header>
-    <%= yield %>
+      <main>
+        <p id="notice"><%= notice %></p>
+        <div class="d-flex justify-content-end mb-2">
+          <%= render 'searches/search' %>
+        </div>
+        <%= yield %>
+      </main>
     <footer>
       <%= render 'layouts/footer' %>
     </footer>
