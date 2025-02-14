@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   #管理者用deviseルーティング
   devise_for :admins,skip: [:registrations, :passwords], controllers: {
     sessions: 'admin_side/sessions',
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
     resources :trainings, only: [:index, :new, :show, :edit, :create, :update]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :posts, only: [:index, :show, :edit, :update]
+    resources :foods, only: [:index, :new, :show, :edit, :create, :update, :destroy]
+    resources :exercises, only: [:index, :new, :show, :edit, :create, :update, :destroy]
   end
 
   #ユーザー用ルーティング
@@ -40,6 +43,8 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
     end
     resources :trainings, only: [:index, :show]
+    resources :foods, only: [:index]
+    resources :exercises, only: [:index]
   end
 
   get 'searches/search'

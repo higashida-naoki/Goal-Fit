@@ -1,0 +1,2 @@
+module UserSide::FoodsHelper
+end

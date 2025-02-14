@@ -1,0 +1,24 @@
+<h2>運動・筋トレ管理</h2>
+<%= link_to '新規追加', new_admin_side_exercise_path, class: 'btn btn-primary' %>
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>消費カロリー (kcal/30分)</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @exercises.each do |exercise| %>
+      <tr>
+        <td><%= exercise.name %></td>
+        <td><%= exercise.calories %></td>
+        <td>
+          <%= link_to '編集', edit_admin_side_exercise_path(exercise), class: 'btn btn-success btn-sm' %>
+          <%= link_to '削除', admin_side_exercise_path(exercise), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

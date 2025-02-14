@@ -1,0 +1,2 @@
+module UserSide::ExercisesHelper
+end

@@ -1,0 +1,2 @@
+module AdminSide::ExercisesHelper
+end

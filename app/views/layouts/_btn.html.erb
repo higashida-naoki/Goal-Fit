@@ -8,6 +8,12 @@
       <li class="nav-item me-3">
         <%= link_to '投稿一覧', admin_side_posts_path, class: 'btn btn-outline-dark' %>
       </li>
+      <li class="nav-item me-3">
+        <%= link_to '食べ物カロリー参考一覧', admin_side_foods_path, class: 'btn btn-outline-dark' %>
+      </li>
+      <li class="nav-item me-3">
+        <%= link_to '運動カロリー参考一覧', admin_side_exercises_path, class: 'btn btn-outline-dark' %>
+      </li>
       <li class="nav-item mr-3">
         <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-outline-dark' %>
       </li>
@@ -37,7 +43,10 @@
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' %>
     </li>
     <li class="nav-item me-3">
-      <%= link_to 'About', about_path, class: 'btn btn-outline-dark' %>
+      <%= link_to '食べ物カロリー参考', foods_path, class: 'btn btn-outline-dark' %>
+    </li>
+    <li class="nav-item me-3">
+      <%= link_to '運動カロリー参考', exercises_path, class: 'btn btn-outline-dark' %>
     </li>
   <% else %>
     <li class="nav-item me-3">

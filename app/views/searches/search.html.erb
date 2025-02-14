@@ -1,4 +1,9 @@
+<h3>検索結果 "<%= @content %>"</h3>
+
 <% if @model == 'user' %>
-	<h3>検索結果 "<%= @content %>"</h3>
   <%= render 'user_side/users/index', users: @records %>
+<% elsif @model == 'food' %>
+  <%= render 'user_side/foods/index', foods: @records %>
+<% elsif @model == 'exercise' %>
+  <%= render 'user_side/exercises/index', exercises: @records %>
 <% end %>

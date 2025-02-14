@@ -1,0 +1,19 @@
+<h2>食べ物のカロリー一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>カロリー（100gあたり）</th>
+      <th>カテゴリー</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (foods || []).each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.calories %> kcal</td>
+        <td><%= food.category %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

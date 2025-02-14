@@ -1,0 +1,17 @@
+<h2>運動・筋トレの消費カロリー一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>消費カロリー（30分あたり）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (exercises || []).each do |exercise| %>
+      <tr>
+        <td><%= exercise.name %></td>
+        <td><%= exercise.calories %> kcal</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

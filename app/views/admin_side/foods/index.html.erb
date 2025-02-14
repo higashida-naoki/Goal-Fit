@@ -1,0 +1,26 @@
+<h2>食べ物管理</h2>
+<%= link_to '新規追加', new_admin_side_food_path, class: 'btn btn-primary' %>
+
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>カロリー (kcal)</th>
+      <th>カテゴリ-</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.calories %></td>
+        <td><%= food.category %></td>
+        <td>
+          <%= link_to '編集', edit_admin_side_food_path(food), class: 'btn btn-success btn-sm' %>
+          <%= link_to '削除', admin_side_food_path(food), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
