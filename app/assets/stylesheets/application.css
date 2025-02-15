@@ -24,11 +24,28 @@
   font-weight: bold;
 }
 
-footer {
+.footer {
   width: 100%;
-  background-color: #6c757d; /* bg-secondary と同様 */
+  background-color: #99ccff;
   color: white;
   padding: 20px 0;
   text-align: center;
 }
 
+.goal-fit-logo {
+  font-size: 2rem; /* フォントサイズを大きく */
+  font-weight: bold; /* 太字 */
+  text-transform: uppercase; /* 大文字化（オプション） */
+  letter-spacing: 2px; /* 文字間隔を広げる */
+  color: #333; /* 文字色（オプション） */
+}
+
+.menu-button {
+  margin-left: 20px; /* 左に20px移動（調整可能） */
+  display: flex;
+  align-items: center;
+}
+
+.menu-button span {
+  margin-left: 8px; /* 文字とアイコンの間にスペース */
+}

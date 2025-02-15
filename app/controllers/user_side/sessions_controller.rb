@@ -29,10 +29,27 @@ class UserSide::SessionsController < Devise::SessionsController
     user_path(resource)
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
+  end
 
   def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   end
+
+  def guest_sign_in
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.hex(10) # ゲスト用のパスワード
+      user.name = "ゲストユーザー"  # Nicknameを設定
+      user.nickname = "ゲストユーザー"  # Nicknameを設定
+      user.height = 170                # 身長（例: 170cm）
+      user.current_weight = 60         # 現在の体重（例: 60kg）
+      user.ideal_weight = 55           # 理想体重（例: 55kg）
+    end
+    sign_in(user)
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   private
 
   def user_state

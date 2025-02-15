@@ -44,3 +44,10 @@
       <td><%= number_with_delimiter(user.target_calories_consumed) %> kcal</td>
     </tr> 
   </table>
+  <% unless user.guest_user? %>
+  <div class="row">
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+  </div>
+<% end %>

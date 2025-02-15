@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_admin_or_user!
 
   def authenticate_admin_or_user!
     if admin_controller?
@@ -25,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    about_path
+    root_path
   end
 
   private

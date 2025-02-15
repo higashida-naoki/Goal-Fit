@@ -1,12 +1,12 @@
 <!-- ヘッダー部分 -->
 <nav class="navbar navbar-light bg-light">
-  <div class="container d-flex justify-content-center align-items-center">
-    <strong><%= link_to "Goal Fit", root_path, class: "navbar-brand " %></strong>
-  </div>
-  <div class="container">
-    <!-- ハンバーガーメニューのボタン -->
-    <button class="navbar-toggler" type="button" id="menu-toggle">
-      <span class="navbar-toggler-icon"></span>
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="mx-auto">
+      <strong><%= link_to "Goal Fit", root_path, class: "navbar-brand goal-fit-logo" %></strong>
+    </div>
+
+    <button class="navbar-toggler menu-button" type="button" id="menu-toggle">
+      MENU <span class="navbar-toggler-icon"></span>
     </button>
   </div>
 </nav>
@@ -19,13 +19,13 @@
   <ul class="list-unstyled">
     <% if admin_signed_in? %>
       <% if request.fullpath.include? "/admin" %>
-        <li><%= link_to '会員一覧', admin_side_users_path %></li>
-        <li><%= link_to '投稿一覧', admin_side_posts_path %></li>
-        <li><%= link_to '食べ物カロリー参考一覧', admin_side_foods_path %></li>
-        <li><%= link_to '運動カロリー参考一覧', admin_side_exercises_path %></li>
-        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+        <li><%= link_to '会員一覧', admin_side_users_path, class: 'menu-link' %></li>
+        <li><%= link_to '投稿一覧', admin_side_posts_path, class: 'menu-link' %></li>
+        <li><%= link_to '食べ物カロリー参考一覧', admin_side_foods_path, class: 'menu-link' %></li>
+        <li><%= link_to '運動カロリー参考一覧', admin_side_exercises_path, class: 'menu-link' %></li>
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'menu-link' %></li>
       <% else %>
-        <li><%= link_to '管理者ページ', admin_side_posts_path %></li>
+        <li><%= link_to '管理者ページ', admin_side_posts_path, class: 'menu-link' %></li>
       <% end %>
 
     <% elsif user_signed_in? %>
@@ -38,8 +38,9 @@
       <li><%= link_to '運動カロリー参考', exercises_path, class: 'menu-link' %></li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'menu-link' %></li>
     <% else %>
-      <li><%= link_to "新規登録", new_user_registration_path %></li>
-      <li><%= link_to "ログイン", new_user_session_path %></li>
+      <li><%= link_to "新規登録", new_user_registration_path, class: 'menu-link' %></li>
+      <li><%= link_to "ログイン", new_user_session_path, class: 'menu-link' %></li>
+      <li><%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: 'menu-link', method: :post %></li>
     <% end %>
   </ul>
 </div>
@@ -49,17 +50,17 @@
   .menu {
     position: fixed;
     top: 0;
-    left: -250px;
+    right: -250px;
     width: 250px;
     height: 100vh;
     background: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;
     padding: 20px;
     z-index: 9999; /* メニューを最前面に表示 */
   }
   .menu.open {
-    left: 0; /* 開いた状態 */
+    right: 0; /* 開いた状態 */
   }
   .menu ul {
     padding: 0;
@@ -80,5 +81,8 @@
     cursor: pointer;
   }
 
+  .navbar {
+  background-color: #99ccff !important; /* ボールドな紫 */
+}
 </style>
 

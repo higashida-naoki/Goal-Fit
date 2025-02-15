@@ -1,5 +1,6 @@
 class UserSide::UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
@@ -58,5 +59,12 @@ class UserSide::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:image, :name, :nickname, :introduction, :height, :current_weight, :ideal_weight, :target_calorie_intake, :target_calories_consumed, :email, :is_active)
   end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end  
 
 end

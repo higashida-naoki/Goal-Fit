@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     sessions: 'user_side/sessions',
     registrations: 'user_side/registrations',
   }
+
+  devise_scope :user do
+    post "users/guest_sign_in", to: "user_side/sessions#guest_sign_in"
+  end
   
   #管理者用ルーティング
   namespace :admin_side do
