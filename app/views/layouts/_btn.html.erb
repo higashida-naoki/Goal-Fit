@@ -1,61 +1,84 @@
-<ul class="d-flex list-unstyled justify-content-end">
+<!-- ヘッダー部分 -->
+<nav class="navbar navbar-light bg-light">
+  <div class="container d-flex justify-content-center align-items-center">
+    <strong><%= link_to "Goal Fit", root_path, class: "navbar-brand " %></strong>
+  </div>
+  <div class="container">
+    <!-- ハンバーガーメニューのボタン -->
+    <button class="navbar-toggler" type="button" id="menu-toggle">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
 
-  <% if admin_signed_in? %>
-    <% if request.fullpath.include? "/admin" %>
-      <li class="nav-item me-3">
-        <%= link_to '会員一覧', admin_side_users_path, class: 'btn btn-outline-dark' %>
-      </li>
-      <li class="nav-item me-3">
-        <%= link_to '投稿一覧', admin_side_posts_path, class: 'btn btn-outline-dark' %>
-      </li>
-      <li class="nav-item me-3">
-        <%= link_to '食べ物カロリー参考一覧', admin_side_foods_path, class: 'btn btn-outline-dark' %>
-      </li>
-      <li class="nav-item me-3">
-        <%= link_to '運動カロリー参考一覧', admin_side_exercises_path, class: 'btn btn-outline-dark' %>
-      </li>
-      <li class="nav-item mr-3">
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn btn-outline-dark' %>
-      </li>
+<!-- メニュー（デフォルトは非表示） -->
+<div id="menu" class="menu">
+  <!-- 閉じるボタン（×） -->
+  <button class="close-btn" id="menu-close">&times;</button>
+
+  <ul class="list-unstyled">
+    <% if admin_signed_in? %>
+      <% if request.fullpath.include? "/admin" %>
+        <li><%= link_to '会員一覧', admin_side_users_path %></li>
+        <li><%= link_to '投稿一覧', admin_side_posts_path %></li>
+        <li><%= link_to '食べ物カロリー参考一覧', admin_side_foods_path %></li>
+        <li><%= link_to '運動カロリー参考一覧', admin_side_exercises_path %></li>
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to '管理者ページ', admin_side_posts_path %></li>
+      <% end %>
+
+    <% elsif user_signed_in? %>
+      <li><%= link_to 'マイページ', user_path(current_user), class: 'menu-link' %></li>
+      <li><%= link_to 'ユーザー一覧', users_path, class: 'menu-link' %></li>
+      <li><%= link_to '投稿一覧', posts_path, class: 'menu-link' %></li>
+      <li><%= link_to '新規投稿', new_post_path, class: 'menu-link' %></li>
+      <li><%= link_to 'いいね一覧', favorites_user_path(current_user), class: 'menu-link' %></li>
+      <li><%= link_to '食べ物カロリー参考', foods_path, class: 'menu-link' %></li>
+      <li><%= link_to '運動カロリー参考', exercises_path, class: 'menu-link' %></li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'menu-link' %></li>
     <% else %>
-      <li class="nav-item me-3">
-        <%= link_to '管理者ページ', admin_side_posts_path, class: 'btn btn-outline-dark' %>
-      </li>
+      <li><%= link_to "新規登録", new_user_registration_path %></li>
+      <li><%= link_to "ログイン", new_user_session_path %></li>
     <% end %>
+  </ul>
+</div>
 
-  <% elsif user_signed_in? %>
-    <li class="nav-item me-3">
-      <%= link_to 'ユーザーページ', user_path(current_user), class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to 'ユーザー一覧', users_path, class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to '投稿一覧', posts_path, class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to '新規投稿', new_post_path, class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to 'いいね一覧',  favorites_user_path(current_user), class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to '食べ物カロリー参考', foods_path, class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to '運動カロリー参考', exercises_path, class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark' %>
-    </li>
-  <% else %>
-    <li class="nav-item me-3">
-      <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-outline-dark' %>
-    </li>
-    <li class="nav-item me-3">
-      <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-dark' %>
-    </li>
+<!-- CSS（メニューのスタイル） -->
+<style>
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
+    padding: 20px;
+    z-index: 9999; /* メニューを最前面に表示 */
+  }
+  .menu.open {
+    left: 0; /* 開いた状態 */
+  }
+  .menu ul {
+    padding: 0;
+    margin-top: 50px;
+  }
+  .menu li {
+    margin-bottom: 15px;
+  }
 
-    
-  <% end %>
-</ul>
+  /* 閉じるボタン（×） */
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+</style>
+
