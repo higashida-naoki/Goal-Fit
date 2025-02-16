@@ -1,8 +1,9 @@
 <!-- ヘッダー部分 -->
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light">
   <div class="container d-flex justify-content-between align-items-center">
     <div class="mx-auto">
-      <strong><%= link_to "Goal Fit", root_path, class: "navbar-brand goal-fit-logo" %></strong>
+      <strong><%= link_to "Goal Fit", root_path, class: "navbar-brand goal-fit-logo menu-link" %></strong>
+      <%= stylesheet_link_tag 'application', media: 'all' %>
     </div>
 
     <button class="navbar-toggler menu-button" type="button" id="menu-toggle">
@@ -82,7 +83,7 @@
   }
 
   .navbar {
-  background-color: #99ccff !important; /* ボールドな紫 */
+  background-color: #ffffff !important; /* ボールドな紫 */
 }
 </style>
 
