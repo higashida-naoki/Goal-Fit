@@ -2,10 +2,13 @@
 <nav class="navbar navbar-light">
   <div class="container d-flex justify-content-between align-items-center">
     <div class="mx-auto">
-      <strong><%= link_to "Goal Fit", root_path, class: "navbar-brand goal-fit-logo menu-link" %></strong>
+      <div class="navbar-logo">
+        <%= link_to root_path do %>
+          <%= image_tag('logo1.jpeg', alt: 'Goal Fit logo') %>
+        <% end %>
+      </div>
       <%= stylesheet_link_tag 'application', media: 'all' %>
     </div>
-
     <button class="navbar-toggler menu-button" type="button" id="menu-toggle">
       MENU <span class="navbar-toggler-icon"></span>
     </button>
@@ -83,7 +86,26 @@
   }
 
   .navbar {
-  background-color: #ffffff !important; /* ボールドな紫 */
-}
+    background-color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  /* ロゴのスタイル */
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    height: 200px; /* ロゴの高さを200pxに設定 */
+    width: 200px; /* ロゴの幅を200pxに設定 */
+    overflow: hidden; /* はみ出し防止 */
+  }
+  
+  .navbar-logo img {
+    height: 100%; /* 親要素の高さにフィット */
+    width: 100%; /* 親要素の幅にフィット */
+    object-fit: contain; /* 画像の全体を表示 */
+  }
+  
 </style>
 

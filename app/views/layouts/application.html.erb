@@ -13,12 +13,12 @@
   <body>
     <header>
       <%= render 'layouts/btn' %>
-    </header>
-      <main>
-        <p id="notice"><%= notice %></p>
+      <p id="notice"><%= notice %></p>
         <div class="d-flex justify-content-end mb-2">
           <%= render 'searches/search' %>
           </div>
+    </header>
+      <main>
         <%= yield %>
       </main>
     <footer>
