@@ -25,10 +25,10 @@ class UserSide::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+
     if @post.save
       redirect_to post_path(@post), notice: "投稿が完了しました！"
     else
-      @posts = Post.all
       render 'new'
     end
   end
@@ -37,7 +37,7 @@ class UserSide::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "You have updated book successfully."
+      redirect_to post_path(@post), notice: "投稿が更新されました！"
     else
       render "edit"
     end
@@ -46,7 +46,7 @@ class UserSide::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-     redirect_to posts_path, notice: "successfully delete book!"
+    redirect_to posts_path, notice: "投稿を削除しました！"
   end
 
   private
@@ -54,12 +54,17 @@ class UserSide::PostsController < ApplicationController
   def ensure_correct_user
     @post = Post.find(params[:id])
     unless @post.user == current_user
-      redirect_to posts_path
+      redirect_to posts_path, alert: "権限がありません。"
     end
   end
 
   def post_params
-    params.require(:post).permit(:breakfast, :lunch, :dinner, :dessert, :calorie_intake, :calories_consumed, :total_calories, :progress, :weight, :body, :effort_point)
+    params.require(:post).permit(
+      :calorie_intake, :calories_consumed, :total_calories, :progress, 
+      :weight, :body, :effort_point, 
+      :breakfast_image, :lunch_image, :dinner_image, 
+      breakfast: [], lunch: [], dinner: [], 
+      breakfast_calories: [], lunch_calories: [], dinner_calories: []
+    )
   end
-
 end

@@ -9,6 +9,9 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer :calories_consumed
       t.integer :calorie_intake
       t.integer :total_calories
+      t.text :breakfast_calories
+      t.text :lunch_calories
+      t.text :dinner_calories
       t.integer :progress
       t.integer :weight
       t.string :body

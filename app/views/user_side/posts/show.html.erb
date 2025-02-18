@@ -1,36 +1,86 @@
 <h2>投稿詳細</h2>
+
 <table>
+  <!-- 朝食 -->
   <tr>
-    <th><投稿日></th>
-    <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
+  <th>朝食</th>
+  <td>
+    <% @post.breakfast.each_with_index do |item, index| %>
+      <p><%= item %>（<%= (@post.breakfast_calories[index] || 0).to_i %> kcal）</p>
+    <% end %>
+    <strong>合計: <%= @post.total_breakfast_calories %> kcal</strong>
+  </td>
+</tr>
+<tr>
+    <th>朝食写真</th>
+    <td>
+      <% if @post.breakfast_image.present? && @post.breakfast_image.attached? %>
+        <%= image_tag url_for(@post.breakfast_image), class: "meal-photo", width: 200, height: 200 %>
+      <% else %>
+        なし
+      <% end %>
+    </td>
   </tr>
-  <tr>
-    <th>投稿者</th>
-    <td><%= link_to @post.user.nickname, user_path(@user) %></td>
-  </tr>
-  <tr>
-    <th>朝食</th>
-    <td><%= @post.breakfast %></td>
-  </tr>
+
+  <!-- 昼食 -->
   <tr>
     <th>昼食</th>
-    <td><%= @post.lunch %></td>
+    <td>
+      <% @post.lunch.each_with_index do |item, index| %>
+        <p><%= item %>（<%= (@post.lunch_calories[index] || 0).to_i %> kcal）</p>
+      <% end %>
+      <strong>合計: <%= @post.total_lunch_calories %> kcal</strong>
+    </td>
   </tr>
+  <tr>
+    <th>昼食写真</th>
+    <td>
+      <% if @post.lunch_image.present? && @post.lunch_image.attached? %>
+        <%= image_tag url_for(@post.lunch_image), class: "meal-photo", width: 200, height: 200 %>
+      <% else %>
+        なし
+      <% end %>
+    </td>
+  </tr>
+
+  <!-- 夕食 -->
   <tr>
     <th>夕食</th>
-    <td><%= @post.dinner %></td>
+    <td>
+      <% @post.dinner.each_with_index do |item, index| %>
+        <p><%= item %>（<%= (@post.dinner_calories[index] || 0).to_i %> kcal）</p>
+      <% end %>
+      <strong>合計: <%= @post.total_dinner_calories %> kcal</strong>
+    </td>
   </tr>
   <tr>
-    <th>間食</th>
-    <td><%= @post.dessert %></td>
+    <th>夕食写真</th>
+    <td>
+      <% if @post.dinner_image.present? && @post.dinner_image.attached? %>
+        <%= image_tag url_for(@post.dinner_image), class: "meal-photo", width: 200, height: 200 %>
+      <% else %>
+        なし
+      <% end %>
+    </td>
   </tr>
+
+  <!-- 総摂取カロリー -->
   <tr>
-    <th>摂取カロリー</th>
-    <td><%= number_with_delimiter(@post.calorie_intake) %> kcal</td>
+    <th>総摂取カロリー</th>
+    <td><%= @post.total_calorie_intake %> kcal</td>
   </tr>
+
   <tr>
     <th>消費カロリー</th>
     <td><%= number_with_delimiter(@post.calories_consumed) %> kcal</td>
+  </tr>
+  <tr>
+    <th>今日の体重</th>
+    <td><%= @post.weight %> kg</td>
+  </tr>
+  <tr>
+    <th>努力ポイント</th>
+    <td><%= @post.effort_point %></td>
   </tr>
   <tr>
     <th>カロリー収支</th>
@@ -39,18 +89,6 @@
   <tr>
     <th>進捗度</th>
     <td><%= @post.index_progress %> %</td>
-  </tr>
-  <tr>
-    <th>今日の体重</th>
-    <td><%= @post.weight %> kg</td>
-  </tr>
-  <tr>
-    <th>今日のBody</th>
-    <td><%= @post.body %></td>
-  </tr>
-  <tr>
-    <th>努力ポイント</th>
-    <td><%= @post.effort_point %>
   </tr>
   <tr>
     <th>いいね数</th>
@@ -62,7 +100,7 @@
   </tr>
   <% if @post.user == current_user %>
     <td><%= link_to '編集する', edit_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %></td>
-    <td><%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
+    <td><%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}" %></td>
   <% end %>
 </table>
 

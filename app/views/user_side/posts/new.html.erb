@@ -13,35 +13,73 @@
       <% end %>
 
 
-      <%= form_with model: @post, url: posts_path do |f| %>
-        <table>
-          <tr>
-            <td><%= f.label :breakfast, "朝食" %></td>
-            <td><%= f.text_field :breakfast %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :lunch, "昼食" %></td>
-            <td><%= f.text_field :lunch %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :dinner, "夕食" %></td>
-            <td><%= f.text_field :dinner %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :dessert, "間食" %></td>
-            <td><%= f.text_field :dessert %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :calorie_intake, "摂取カロリー" %></td>
-            <td><%= f.text_field :calorie_intake %></td>
-          </tr>
+<h2>本日の投稿</h2>
+
+<%= form_with model: @post, url: posts_path, local: true, html: { multipart: true } do |f| %>
+  <table>
+    <!-- 朝食 -->
+    <tr>
+      <th>朝食</th>
+      <td>
+        <div id="breakfast-fields">
+          <div class="meal-entry">
+            <input type="text" name="post[breakfast][]" class="breakfast-input" placeholder="朝食の内容">
+            <input type="number" name="post[breakfast_calories][]" class="calorie-input" placeholder="カロリー"> kcal
+          </div>
+        </div>
+        <button type="button" class="add-field" data-target="breakfast-fields">＋</button>
+      </td>
+    </tr>
+    <tr>
+      <th>朝食の写真</th>
+      <td><%= f.file_field :breakfast_image %></td>
+    </tr>
+
+    <!-- 昼食 -->
+    <tr>
+      <th>昼食</th>
+      <td>
+        <div id="lunch-fields">
+          <div class="meal-entry">
+            <input type="text" name="post[lunch][]" class="lunch-input" placeholder="昼食の内容">
+            <input type="number" name="post[lunch_calories][]" class="calorie-input" placeholder="カロリー"> kcal
+          </div>
+        </div>
+        <button type="button" class="add-field" data-target="lunch-fields">＋</button>
+      </td>
+    </tr>
+    <tr>
+      <th>昼食の写真</th>
+      <td><%= f.file_field :lunch_image %></td>
+    </tr>
+
+    <!-- 夕食 -->
+    <tr>
+      <th>夕食</th>
+      <td>
+        <div id="dinner-fields">
+          <div class="meal-entry">
+            <input type="text" name="post[dinner][]" class="dinner-input" placeholder="夕食の内容">
+            <input type="number" name="post[dinner_calories][]" class="calorie-input" placeholder="カロリー"> kcal
+          </div>
+        </div>
+        <button type="button" class="add-field" data-target="dinner-fields">＋</button>
+      </td>
+    </tr>
+    <tr>
+      <th>夕食の写真</th>
+      <td><%= f.file_field :dinner_image %></td>
+    </tr>
+
+    <!-- 総摂取カロリー -->
+    <tr>
+      <th>総摂取カロリー</th>
+      <td><input type="number" id="total-calories" name="post[calorie_intake]" readonly> kcal</td>
+    </tr>
+
           <tr>
             <td><%= f.label :weight, "今日の体重" %></td>
             <td><%= f.number_field :weight, step: 0.01, min: 0, value: @post.weight %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :body, "今日のBody" %></td>
-            <td><%= f.text_field :body %></td>
           </tr>
           <tr>
             <td><%= f.label :calories_consumed, "消費カロリー" %></td>
@@ -57,3 +95,43 @@
     </div>
   </div>
 </div>
+
+<!-- JavaScript（食事の追加とカロリー合計） -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".add-field").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const targetId = this.getAttribute("data-target");
+        const targetDiv = document.getElementById(targetId);
+        
+        // 新しい食事入力欄とカロリー入力欄を追加
+        const newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.name = `post[${targetId.replace('-fields', '')}][]`;
+        newInput.classList.add(`${targetId.replace('-fields', '')}-input`);
+
+        const newCalorieInput = document.createElement("input");
+        newCalorieInput.type = "number";
+        newCalorieInput.name = `post[${targetId.replace('-fields', '')}_calories][]`;
+        newCalorieInput.classList.add("calorie-input");
+        newCalorieInput.placeholder = "カロリー (kcal)";
+
+        targetDiv.appendChild(newInput);
+        targetDiv.appendChild(newCalorieInput);
+
+        updateTotalCalories();
+      });
+    });
+
+    // カロリー合計計算
+    document.addEventListener("input", updateTotalCalories);
+    
+    function updateTotalCalories() {
+      let totalCalories = 0;
+      document.querySelectorAll(".calorie-input").forEach(input => {
+        totalCalories += Number(input.value) || 0;
+      });
+      document.getElementById("total-calories").value = totalCalories;
+    }
+  });
+</script>
