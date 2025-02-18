@@ -1,13 +1,5 @@
 class ApplicationController < ActionController::Base
 
-  def authenticate_admin_or_user!
-    if admin_controller?
-      authenticate_admin! # Admin 用の認証
-    else
-      authenticate_user!  # User 用の認証
-    end
-  end
-
   def admin_controller?
     params[:controller].start_with?("admin_side/")
   end

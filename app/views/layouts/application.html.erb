@@ -8,16 +8,17 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'chart', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-  </head>
-
-  <body>
     <header>
       <%= render 'layouts/btn' %>
       <p id="notice"><%= notice %></p>
-        <div class="d-flex justify-content-end mb-2">
+        <div class="d-flex justify-content-end mb-4">
           <%= render 'searches/search' %>
           </div>
     </header>
+  </head>
+
+  <body>
+
       <main>
         <%= yield %>
       </main>

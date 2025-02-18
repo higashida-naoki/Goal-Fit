@@ -1,21 +1,21 @@
 <div class="container">
   <div class="row">
-    <h2><%= @user.nickname %>さんのステータス</h2>
+    <h2><%= @user.nickname %>さんのプロフィール</h2>
   </div>
   <div class="row">
-    <div class="col-5">
+    <div class="col-md-8">
       <%= render 'info', user: @user %>
       <% if current_user.id == @user.id %>
         <%= link_to "編集する", edit_user_path(current_user), class: "btn btn-success" %>
       <% end %>
     </div>
-    <div class="col-7">
+    <div class="col-md-12">
       <div class="d-flex justify-content-center mt-5">理想体重との比較グラフ</div>
       <canvas id="lineChart" data-xdates='<%= @x_dates.to_json %>' data-ydates='<%= @y_dates.to_json %>'></canvas>
     </div>
   </div>
   <div class="row">
-  </div>
+  </div><br><br>
   <div class="row">
     <div class="col-12">
         <%= render 'user_side/posts/index', posts: @posts %>

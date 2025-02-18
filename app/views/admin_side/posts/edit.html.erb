@@ -1,0 +1,133 @@
+<h2>投稿編集</h2>
+
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @post, url: admin_side_post_path(@post), method: :patch, local: true, html: { multipart: true } do |f| %>
+  <table>
+    <tr>
+      <th>ニックネーム</th>
+      <td><%= @post.user.nickname %></td>
+    </tr>
+
+    <!-- 朝食 -->
+    <tr>
+  <th>朝食</th>
+  <td>
+    <div id="breakfast-fields">
+      <% @post.breakfast.each_with_index do |item, index| %>
+        <div class="meal-entry">
+          <input type="text" name="post[breakfast][]" class="breakfast-input" value="<%= item %>">
+          <input type="number" name="post[breakfast_calories][]" class="calorie-input" value="<%= @post.breakfast_calories[index] || 0 %>"> kcal
+        </div>
+      <% end %>
+    </div>
+  </td>
+</tr>
+
+    <tr>
+      <th>朝食の写真</th>
+      <td>
+        <% if @post.breakfast_image.attached? %>
+          <%= image_tag @post.breakfast_image, width: 200, height: 200 %>
+        <% end %>
+        <%= f.file_field :breakfast_image %>
+      </td>
+    </tr>
+
+    <!-- 昼食 -->
+    <tr>
+      <th>昼食</th>
+      <td>
+        <div id="lunch-fields">
+          <% if @post.lunch.present? %>
+            <% @post.lunch.each do |item| %>
+              <div class="meal-entry">
+                <input type="text" name="post[lunch][]" class="lunch-input" value="<%= item %>">
+                <input type="number" name="post[lunch_calories][]" class="calorie-input" value="<%= @post.calorie_intake || 0 %>"> kcal
+              </div>
+            <% end %>
+          <% else %>
+            <div class="meal-entry">
+              <input type="text" name="post[lunch][]" class="lunch-input" placeholder="昼食の内容">
+              <input type="number" name="post[lunch_calories][]" class="calorie-input" value="0"> kcal
+            </div>
+          <% end %>
+        </div>
+        <button type="button" class="add-field" data-target="lunch-fields">＋</button>
+      </td>
+    </tr>
+    <tr>
+      <th>昼食の写真</th>
+      <td>
+        <% if @post.lunch_image.attached? %>
+          <%= image_tag @post.lunch_image, width: 200, height: 200 %>
+        <% end %>
+        <%= f.file_field :lunch_image %>
+      </td>
+    </tr>
+
+    <!-- 夕食 -->
+    <tr>
+      <th>夕食</th>
+      <td>
+        <div id="dinner-fields">
+          <% if @post.dinner.present? %>
+            <% @post.dinner.each do |item| %>
+              <div class="meal-entry">
+                <input type="text" name="post[dinner][]" class="dinner-input" value="<%= item %>">
+                <input type="number" name="post[dinner_calories][]" class="calorie-input" value="<%= @post.calorie_intake || 0 %>"> kcal
+              </div>
+            <% end %>
+          <% else %>
+            <div class="meal-entry">
+              <input type="text" name="post[dinner][]" class="dinner-input" placeholder="夕食の内容">
+              <input type="number" name="post[dinner_calories][]" class="calorie-input" value="0"> kcal
+            </div>
+          <% end %>
+        </div>
+        <button type="button" class="add-field" data-target="dinner-fields">＋</button>
+      </td>
+    </tr>
+    <tr>
+      <th>夕食の写真</th>
+      <td>
+        <% if @post.dinner_image.attached? %>
+          <%= image_tag @post.dinner_image, width: 200, height: 200 %>
+        <% end %>
+        <%= f.file_field :dinner_image %>
+      </td>
+    </tr>
+
+
+    <!-- カロリー情報 -->
+    <tr>
+      <th>摂取カロリー</th>
+      <td><input type="number" id="total-calories" name="post[calorie_intake]" value="<%= @post.calorie_intake || 0 %>" readonly> kcal</td>
+    </tr>
+    <tr>
+      <th>消費カロリー</th>
+      <td><%= f.number_field :calories_consumed, value: @post.calories_consumed || 0 %> kcal</td>
+    </tr>
+    <tr>
+      <th>今日の体重</th>
+      <td><%= f.number_field :weight, value: @post.weight || 0 %> kg</td>
+    </tr>
+    <tr>
+      <th>今日のBody</th>
+      <td><%= f.text_field :body, value: @post.body %></td>
+    </tr>
+    <tr>
+      <th>努力ポイント</th>
+      <td><%= f.text_area :effort_point, value: @post.effort_point %></td>
+    </tr>
+  </table>
+
+  <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+<% end %>

@@ -28,4 +28,16 @@ class AdminSide::PostsController < ApplicationController
     @post.destroy
      redirect_to posts_path, notice: "successfully delete book!"
   end
+
+  private
+
+  def post_params
+    params.require(:post).permit(
+      :calorie_intake, :calories_consumed, :total_calories, :progress, 
+      :weight, :body, :effort_point, 
+      :breakfast_image, :lunch_image, :dinner_image, 
+      breakfast: [], lunch: [], dinner: [], 
+      breakfast_calories: [], lunch_calories: [], dinner_calories: []
+    )
+  end
 end

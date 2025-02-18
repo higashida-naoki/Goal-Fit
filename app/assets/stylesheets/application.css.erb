@@ -26,7 +26,7 @@
 
 .custom-footer {
   width: 100%;
-  background-color: #99ccff;
+  background-color: #cc9966;
   color: white;
   text-align: center;
   padding: 0 !important; /* 余白をなくす */
@@ -64,4 +64,23 @@ html, body {
 
 main {
   flex: 1; /* メインコンテンツが余白を埋める */
+}
+
+.add-field {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #007bff; /* Bootstrapのプライマリーカラー */
+    color: white;
+    border-radius: 50%; /* これで丸くなります */
+    border: none; /* 枠線をなくす */
+    text-align: center;
+    line-height: 30px; /* テキストを垂直中央に配置 */
+    font-size: 16px; /* フォントサイズ調整 */
+    cursor: pointer; /* カーソルをポインターに */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25); /* 影を付ける */
+}
+
+.add-field:hover {
+    background-color: #0056b3; /* ホバー時の色変更 */
 }
