@@ -11,7 +11,7 @@
             <% @post.breakfast.each_with_index do |item, index| %>
               <p><%= item %>（<%= (@post.breakfast_calories[index].to_i || 0) %> kcal）</p>
             <% end %>
-            <strong>合計: <%= number_with_delimiter(@post.total_breakfast_calories) %> kcal</strong>
+            <strong>合計: <%= (@post.total_breakfast_calories) %> kcal</strong>
           </td>
           <td>
             <% if @post.breakfast_image.present? && @post.breakfast_image.attached? %>
