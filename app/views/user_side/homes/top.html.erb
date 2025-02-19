@@ -87,20 +87,28 @@
   }
 
   .btn {
-    background-color: white;
-    color: black;
-    padding: 12px 24px;
-    border-radius: 50px; /* 楕円形にする */
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s;
-  }
+  background-color: white;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 50px; /* 楕円形にする */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3); /* 影を追加 */
+}
 
-  .btn:hover {
-    background-color: #f0f0f0; /* ホバー時の背景色 */
-  }
+.btn:hover {
+  background-color: #f0f0f0; /* ホバー時の背景色 */
+  box-shadow: 0 8px 15px rgba(0,0,0,0.5); /* ホバー時に影を強調 */
+}
+
+.btn:active {
+  transform: translateY(2px); /* クリック時にボタンを少し下に動かす */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* クリック時の影を小さくして押し込まれた感じを出す */
+}
+
 
   @media (max-width: 768px) {
     .image-text {

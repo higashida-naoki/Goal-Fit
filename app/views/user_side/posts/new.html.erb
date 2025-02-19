@@ -1,73 +1,85 @@
 <div class="container">
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
   <% end %>
   <div class="row">
     <div class="col-md-12">
 
+      <h2>本日の投稿</h2>
+      <%= form_with model: @post, url: posts_path, local: true, html: { multipart: true } do |f| %>
+        <table class="table">
+          <!-- 朝食 -->
+          <tr>
+            <th>朝食</th>
+            <td>
+              <div id="breakfast-fields">
+                <div class="meal-entry">
+                  <input type="text" name="post[breakfast][]" class="breakfast-input" placeholder="朝食の内容">
+                  <input type="number" name="post[breakfast_calories][]" class="calorie-input" placeholder="カロリー" kcal> kcal
+                </div>
+              </div>
+              <button type="button" class="add-field" data-target="breakfast-fields">＋</button>
+            </td>
+            <td>
+              <!-- 朝食の写真 -->
+              <label for="breakfast-image-upload" class="icon-label">
+                <i class="fa-solid fa-image"></i> 朝食の写真を選択
+              </label>
+              <%= f.file_field :breakfast_image, id: "breakfast-image-upload", style: "display:none;", onchange: "previewImage(event, 'breakfast-image-preview')" %>
+              <img id="breakfast-image-preview" style="max-width: 200px; max-height: 200px; display: none;" />
+            </td>
+          </tr>
 
-<h2>本日の投稿</h2>
-<%= form_with model: @post, url: posts_path, local: true, html: { multipart: true } do |f| %>
-  <table class="table">
-    <!-- 朝食 -->
-    <tr>
-      <th>朝食</th>
-      <td>
-        <div id="breakfast-fields">
-          <div class="meal-entry">
-            <input type="text" name="post[breakfast][]" class="breakfast-input" placeholder="朝食の内容">
-            <input type="number" name="post[breakfast_calories][]" class="calorie-input" placeholder="カロリー" kcal> kcal
-          </div>
-        </div>
-        <button type="button" class="add-field" data-target="breakfast-fields">＋</button>
-      </td>
-      <th>朝食の写真</th>
-      <td><%= f.file_field :breakfast_image %></td>
-    </tr>
+          <!-- 昼食 -->
+          <tr>
+            <th>昼食</th>
+            <td>
+              <div id="lunch-fields">
+                <div class="meal-entry">
+                  <input type="text" name="post[lunch][]" class="lunch-input" placeholder="昼食の内容">
+                  <input type="number" name="post[lunch_calories][]" class="calorie-input" placeholder="カロリー"> kcal
+                </div>
+              </div>
+              <button type="button" class="add-field" data-target="lunch-fields">＋</button>
+            </td>
+            <td>
+              <label for="lunch-image-upload" class="icon-label">
+                <i class="fa-solid fa-image"></i> 昼食の写真を選択
+              </label>
+              <%= f.file_field :lunch_image, id: "lunch-image-upload", style: "display:none;", onchange: "previewImage(event, 'lunch-image-preview')" %>
+              <img id="lunch-image-preview" style="max-width: 200px; max-height: 200px; display: none;" />
+            </td>
+          </tr>
 
-    <!-- 昼食 -->
-    <tr>
-      <th>昼食</th>
-      <td>
-        <div id="lunch-fields">
-          <div class="meal-entry">
-            <input type="text" name="post[lunch][]" class="lunch-input" placeholder="昼食の内容">
-            <input type="number" name="post[lunch_calories][]" class="calorie-input" placeholder="カロリー"> kcal
-          </div>
-        </div>
-        <button type="button" class="add-field" data-target="lunch-fields">＋</button>
-      </td>
-      <th>昼食の写真</th>
-      <td><%= f.file_field :lunch_image %></td>
-    </tr>
-
-    <!-- 夕食 -->
-    <tr>
-      <th>夕食</th>
-      <td>
-        <div id="dinner-fields">
-          <div class="meal-entry">
-            <input type="text" name="post[dinner][]" class="dinner-input" placeholder="夕食の内容">
-            <input type="number" name="post[dinner_calories][]" class="calorie-input" placeholder="カロリー"> kcal
-          </div>
-        </div>
-        <button type="button" class="add-field" data-target="dinner-fields">＋</button>
-      </td>
-      <th>夕食の写真</th>
-      <td><%= f.file_field :dinner_image %></td>
-    </tr>
-
-    <!-- 総摂取カロリー -->
-    <tr>
-      <th>総摂取カロリー</th>
-      <td><input type="number" id="total-calories" name="post[calorie_intake]" readonly> kcal</td>
-    </tr>
-
+          <!-- 夕食 -->
+          <tr>
+            <th>夕食</th>
+            <td>
+              <div id="dinner-fields">
+                <div class="meal-entry">
+                  <input type="text" name="post[dinner][]" class="dinner-input" placeholder="夕食の内容">
+                  <input type="number" name="post[dinner_calories][]" class="calorie-input" placeholder="カロリー"> kcal
+                </div>
+              </div>
+              <button type="button" class="add-field" data-target="dinner-fields">＋</button>
+            </td>
+            <td>
+              <label for="dinner-image-upload" class="icon-label">
+                <i class="fa-solid fa-image"></i> 夕食の写真を選択
+              </label>
+              <%= f.file_field :dinner_image, id: "dinner-image-upload", style: "display:none;", onchange: "previewImage(event, 'dinner-image-preview')" %>
+              <img id="dinner-image-preview" style="max-width: 200px; max-height: 200px; display: none;" />
+            </td>
+          </tr>
+          <tr>
+            <th>総摂取カロリー</th>
+            <td><input type="number" id="total-calories" name="post[calorie_intake]" readonly> kcal</td>
+          </tr>
           <tr>
             <th><%= f.label :weight, "体重" %></th>
             <td><%= f.number_field :weight, step: 0.01, min: 0, value: @post.weight %> kg</td>
@@ -87,7 +99,7 @@
   </div>
 </div>
 
-<!-- JavaScript（食事の追加とカロリー合計） -->
+<!-- JavaScript -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".add-field").forEach(function(button) {
@@ -125,4 +137,27 @@
       document.getElementById("total-calories").value = totalCalories;
     }
   });
+
+  function previewImage(event, previewId) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById(previewId);
+      output.src = reader.result;
+      output.style.display = 'block';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
 </script>
+
+<style>
+  .icon-label {
+    cursor: pointer; /* クリック可能であることを示すカーソル */
+    color: #666; /* アイコンの色 */
+    font-size: 16px; /* アイコンのサイズ */
+    display: inline-block; /* アイコンとテキストを同じ行に表示 */
+  }
+
+  .icon-label i {
+    margin-right: 5px; /* アイコンとテキストの間隔 */
+  }
+</style>
