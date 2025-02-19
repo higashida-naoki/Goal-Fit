@@ -52,6 +52,7 @@
 <!-- CSS（メニューのスタイル） -->
 <style>
   .menu {
+    background-color: rgba(0, 0, 0, 0.8) !important;
     position: fixed;
     top: 0;
     right: -250px;
@@ -69,16 +70,25 @@
   .menu ul {
     padding: 0;
     margin-top: 50px;
+    color: white;
   }
   .menu li {
     margin-bottom: 15px;
+    color: white;
   }
+
+  .menu-link {
+    color: white; /* リンクの文字色を白に変更 */
+    text-decoration: none; /* テキストの下線を削除 */
+}
+
+.menu-link:hover {
+    color: #ccc; /* ホバー時のリンクの文字色を薄い灰色に変更 */
+}
 
   /* 閉じるボタン（×） */
   .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+    color: white; /* ×ボタンの色を白に変更 */
     font-size: 24px;
     border: none;
     background: none;
@@ -86,7 +96,7 @@
   }
 
   .navbar {
-    background-color: #ffffff !important;
+    background-color: #CC9966 !important;
     display: flex;
     align-items: center;
     padding: 10px 20px;
@@ -98,17 +108,43 @@
     align-items: center;
     height: 200px; /* ロゴの高さを200pxに設定 */
     width: 200px; /* ロゴの幅を200pxに設定 */
-    overflow: hidden; /* はみ出し防止 */
   }
   
   .navbar-logo img {
-  height: 100%; /* 親要素の高さにフィット */
-  width: 100%; /* 親要素の幅にフィット */
-  object-fit: cover; /* 画像の全体が親要素にフィットするように調整 */
-  border-radius: 50%; /* 画像を円形にする */
-  border: 8px solid #8B4513; /* 茶色の縁取りを追加 */
+    height: 90%; /* 親要素の高さにフィット */
+    width: 100%; /* 親要素の幅にフィット */
+    object-fit: cover; /* 画像の全体が親要素にフィットするように調整 */
+    border-radius: 50%; /* 画像を円形にする */
+    border: 6px solid #8B4513; /* 茶色の縁取りを追加 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6); /* シャドウで立体感を追加 */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* トランジションを追加 */
+    cursor: pointer; /* カーソルをポインターに変更 */
 }
 
+.navbar-logo img:hover {
+    transform: scale(1.1); /* ホバー時に画像を少し拡大 */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.8); /* ホバー時にシャドウを強調 */
+}
+
+
+.navbar-toggler {
+  background-image: linear-gradient(to bottom right, #F8D486, #F5C66E); /* 光沢感のあるグラデーション */
+  border: none;
+  padding: 10px 40px; /* 楕円形に合わせたパディング */
+  border-radius: 10px; /* 楕円形 */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3), inset 0 4px 4px rgba(255, 255, 255, 0.4); /* 外側と内側の影で立体感 */
+  transition: all 0.2s ease;
+}
+
+.navbar-toggler:hover {
+  background-image: linear-gradient(to bottom right, #FADCA6, #F7CA6E); /* ホバー時に明るく */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5), inset 0 6px 6px rgba(255, 255, 255, 0.5); /* ホバー時に影を強調 */
+}
+
+.navbar-toggler:active {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), inset 0 3px 3px rgba(255, 255, 255, 0.3); /* クリック時の影を調整 */
+  transform: translateY(3px); /* クリック時にボタンを下に動かす */
+}
 
   
 </style>

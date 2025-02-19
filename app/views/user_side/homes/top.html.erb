@@ -29,7 +29,7 @@
 
   .image-container {
     position: absolute;
-    width: 100%;
+    width: 80%;
     height: 100%;
     overflow: hidden;
   }
@@ -47,19 +47,39 @@
 
   .image-text {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-size: 2rem;
+    font-size: 2.5rem; /* 全体のフォントサイズを小さくする */
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* 文字に影をつける */
-  }
+    max-wigth: 80%;
+    white-space: nowrap
+}
+
+.image-text strong {
+    font-size: 3rem; /* 強調部分のフォントサイズを元のサイズに戻す */
+}
+
+@media (max-width: 768px) {
+    .image-text {
+        font-size: 1.3rem; /* モバイル用のフォントサイズを調整 */
+    }
+    .image-text strong {
+        font-size: 1.5rem; /* モバイル用の強調部分のフォントサイズを調整 */
+    }
+    .btn {
+        font-size: 0.9rem; /* モバイル用にボタンの文字サイズを小さく */
+        padding: 10px 20px; /* ボタンの内側の余白を小さく */
+    }
+}
+
 
   /* ボタンのスタイル */
   .button-container {
     position: absolute;
-    bottom: 60px; /* 画像の下部に配置 */
+    bottom: 150px; /* 画像の下部に配置 */
     left: 50%;
     transform: translateX(-50%); /* 中央寄せ */
     display: flex;
