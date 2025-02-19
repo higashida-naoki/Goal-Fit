@@ -9,7 +9,7 @@
           <th>朝食</th>
           <td>
             <% @post.breakfast.each_with_index do |item, index| %>
-              <p><%= item %>（<%= number_with_delimiter(@post.breakfast_calories[index].to_i || 0) %> kcal）</p>
+              <p><%= item %>（<%= (@post.breakfast_calories[index].to_i || 0) %> kcal）</p>
             <% end %>
             <strong>合計: <%= number_with_delimiter(@post.total_breakfast_calories) %> kcal</strong>
           </td>
