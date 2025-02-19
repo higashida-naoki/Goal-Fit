@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :trainings, only: [:index, :new, :show, :edit, :create, :update]
     resources :genres, only: [:index, :edit, :create, :update]
-    resources :posts, only: [:index, :show, :edit, :update]
+    resources :posts, only: [:index, :show, :edit, :update] do
+      resources :post_comments, only: [:destroy]
+    end
     resources :foods, only: [:index, :new, :show, :edit, :create, :update, :destroy]
     resources :exercises, only: [:index, :new, :show, :edit, :create, :update, :destroy]
   end
