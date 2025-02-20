@@ -6,7 +6,7 @@
           <div class="col-md-4">
           <div class="card text-center">
             <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image, class: "rounded-circle mb-3 image-center", size: "100x100" %>
+              <%= image_tag user.get_profile_image, class: "rounded-circle mb-3 profile-image", size: "100x100" %>
             <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= user.nickname %></h5>
@@ -19,7 +19,10 @@
                     <span class="text-danger">退会済み</span>
                   <% end %>
                 </p>
-                <p class="card-text">フォロー数: <%= user.followings.count %></p>
+                <div class="d-flex justify-content-around mb-3">
+                  <p class="card-text">フォロー: <%= user.followings.count %></p>
+                  <p class="card-text">フォロワー: <%= user.followers.count %></p>
+                </div>
                 <% if current_user != user %>
                   <% if current_user.following?(user) %>
                     <%= link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-secondary" %>
@@ -37,9 +40,22 @@
     </div>
 
 <style>
-  .image-center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.profile-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid black; /* 黒い枠線、幅2px */
+  margin-top: 10px; /* 上に10pxの余白を追加 */
+}
+
+.card {
+border: 2px solid black; /* 黒い枠線 */
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 影を追加 */
+transition: transform 0.3s ease-in-out; /* アニメーション効果 */
+}
+
+.card:hover {
+transform: translateY(-5px); /* ホバー時にカードを少し持ち上げる */
+}
+
 </style>

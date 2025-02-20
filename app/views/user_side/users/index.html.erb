@@ -6,7 +6,7 @@
         <div class="card text-center">
           <div class="card-body">
           <%= link_to user_path(user) do %>
-            <%= image_tag user.get_profile_image, class: "rounded-circle mb-3", size: "100x100" %>
+            <%= image_tag user.get_profile_image, class: "rounded-circle mb-3 profile-image", size: "100x100" %>
           <% end %>
             <h5 class="card-title"><%= user.nickname %></h5>
             <p class="card-text"><%= user.introduction.presence || "自己紹介はありません" %></p>
@@ -25,3 +25,20 @@
     <% end %>
   </div>
 </div>
+
+<style>
+  .profile-image {
+    border: 2px solid black; /* 黒い枠線、幅2px */
+  }
+
+  .card {
+  border: 2px solid black; /* 黒い枠線 */
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 影を追加 */
+  transition: transform 0.3s ease-in-out; /* アニメーション効果 */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* ホバー時にカードを少し持ち上げる */
+}
+
+</style>
