@@ -1,6 +1,44 @@
-<h2>Follow Users</h2>
-<% if @users.exists? %>
-  <%= render 'user_side/users/relation', users: @users %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="container">
+  <h2 class="text-center mb-4">フォロー中</h2>
+  <div class="row">
+    <% if @followings.present? %>
+      <% @followings.each do |user| %>
+        <div class="col-md-4">
+          <div class="card">
+          <div class="card text-center">
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image, class: "rounded-circle mb-3 image-center", size: "100x100" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= user.nickname %></h5>
+              <p class="card-text"><%= user.introduction.presence || "自己紹介はありません" %></p>
+              <p class="card-text">
+                <td>ステータス:</td>
+                <% if user.is_active? %>
+                  <span class="text-success">有効</span>
+                <% else %>
+                  <span class="text-danger">退会済み</span>
+                <% end %>
+              </p>
+              <div class="d-flex justify-content-around mb-3">
+                <p class="card-text">フォロー: <%= user.followings.count %></p>
+                <p class="card-text">フォロワー: <%= user.followers.count %></p>
+              </div>
+              <%= link_to "フォロー中", user_relationships_path(user), method: :delete, class: "btn btn-secondary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>　フォロー中のユーザーはいません。</p>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

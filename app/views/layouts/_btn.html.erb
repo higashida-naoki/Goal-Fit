@@ -40,6 +40,8 @@
       <li><%= link_to 'いいね一覧', favorites_user_path(current_user), class: 'menu-link' %></li>
       <li><%= link_to '食べ物カロリー参考', foods_path, class: 'menu-link' %></li>
       <li><%= link_to '運動カロリー参考', exercises_path, class: 'menu-link' %></li>
+      <li><%= link_to 'フォロー中', user_followings_path(@user), class: 'menu-link' %></li>
+      <li><%= link_to 'フォロワー', user_followers_path(@user), class: 'menu-link' %></li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'menu-link' %></li>
     <% else %>
       <li><%= link_to "新規登録", new_user_registration_path, class: 'menu-link' %></li>
