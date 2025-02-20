@@ -1,0 +1,7 @@
+<%= form_with model: @post, local: true do |f| %>
+  <%= f.fields_for :meals do |meal_form| %>
+    <%= render 'meal_fields', f: meal_form %>
+  <% end %>
+  <%= link_to_add_association '食事を追加', f, :meals, partial: 'meal_fields' %>
+  <%= f.submit '保存' %>
+<% end %>

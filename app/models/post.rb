@@ -14,6 +14,8 @@ class Post < ApplicationRecord
   serialize :dinner_calories, Array
   before_save :ensure_calorie_arrays
 
+  validates :breakfast, :breakfast_calories, :lunch, :lunch_calories, :dinner, :dinner_calories, :weight, presence: { message: 'は必須項目です。' }
+
   # 朝食カロリー合計を取得
   def total_breakfast_calories
     (breakfast_calories || []).map(&:to_i).sum

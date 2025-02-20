@@ -43,6 +43,14 @@
       <th>1日の目標消費カロリー</th>
       <td><%= number_with_delimiter(user.target_calories_consumed) %> kcal</td>
     </tr> 
+    <tr>
+    <th>フォロー</th>
+    <th><%= link_to user.followings.count, user_followings_path(user) %></th>
+  </tr>
+  <tr>
+    <th>フォロワー</th>
+    <th><%= link_to user.followers.count, user_followers_path(user) %></th>
+  </tr>
   </table>
 
   <% if user.guest_user? %>
