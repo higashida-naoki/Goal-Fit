@@ -1,6 +1,5 @@
 class UserSide::PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   
   def index
     @posts = Post.order(created_at: :desc).page(params[:page]).per(7)
@@ -53,7 +52,7 @@ class UserSide::PostsController < ApplicationController
 
   def ensure_correct_user
     @post = Post.find(params[:id])
-    unless @post.user == current_user
+    unless @post.user_id == current_user.id
       redirect_to posts_path, alert: "権限がありません。"
     end
   end

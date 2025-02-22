@@ -30,6 +30,7 @@
         <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'menu-link' %></li>
       <% else %>
         <li><%= link_to '管理者ページ', admin_side_posts_path, class: 'menu-link' %></li>
+        <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'menu-link' %></li>
       <% end %>
 
     <% elsif user_signed_in? %>

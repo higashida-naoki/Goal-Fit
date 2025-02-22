@@ -1,103 +1,75 @@
 <div class="container">
   <h2>投稿詳細</h2>
-  <table class="table">
-    <tr>
-      <th>投稿日</th>
-      <td><%= @post.created_at.strftime("%Y/%m/%d") %></td>
-    </tr>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
 
-    <!-- 朝食 -->
-    <div class="row">
-      <div class="col-mt6">
+        <!-- 朝食 -->
         <tr>
           <th>朝食</th>
+          <td><%= @post.breakfast %></td>
+          <td><%= number_with_delimiter(@post.breakfast_calories) %> kcal</td>
           <td>
-            <% @post.breakfast.each_with_index do |item, index| %>
-              <p><%= item %>（<%= number_with_delimiter(@post.breakfast_calories[index].to_i || 0) %> kcal）</p>
-            <% end %>
-            <strong>合計: <%= number_with_delimiter(@post.total_breakfast_calories) %> kcal</strong>
-          </td>
-          <td>
-            <% if @post.breakfast_image.present? && @post.breakfast_image.attached? %>
-              <%= image_tag url_for(@post.breakfast_image), class: "meal-photo", width: 200, height: 200 %>
+            <% if @post.breakfast_image.attached? %>
+              <%= image_tag(@post.breakfast_image, size: "200x200") %>
             <% else %>
-              なし
+              No Image
             <% end %>
           </td>
         </tr>
-      </div>
-    </div>
 
-    <!-- 昼食 -->
-    <div class="row">
-      <div class="col-mt6">
-
+        <!-- 昼食 -->
         <tr>
           <th>昼食</th>
+          <td><%= @post.lunch %></td>
+          <td><%= number_with_delimiter(@post.lunch_calories) %> kcal</td>
           <td>
-            <% @post.lunch.each_with_index do |item, index| %>
-              <p><%= item %>（<%= (@post.lunch_calories[index] || 0).to_i %> kcal）</p>
-            <% end %>
-            <strong>合計: <%= @post.total_lunch_calories %> kcal</strong>
-          </td>
-          <td>
-            <% if @post.lunch_image.present? && @post.lunch_image.attached? %>
-              <%= image_tag url_for(@post.lunch_image), class: "meal-photo", width: 200, height: 200 %>
+            <% if @post.lunch_image.attached? %>
+              <%= image_tag(@post.lunch_image, size: "200x200") %>
             <% else %>
-              なし
+              No Image
             <% end %>
           </td>
         </tr>
-      </div>
-    </div>
 
-    <!-- 夕食 -->
-    <div class="row">
-      <div class="col-mt6">
+        <!-- 夕食 -->
         <tr>
           <th>夕食</th>
+          <td><%= @post.dinner %></td>
+          <td><%= number_with_delimiter(@post.dinner_calories) %> kcal</td>
           <td>
-            <% @post.dinner.each_with_index do |item, index| %>
-              <p><%= item %>（<%= (@post.dinner_calories[index] || 0).to_i %> kcal）</p>
-            <% end %>
-            <strong>合計: <%= @post.total_dinner_calories %> kcal</strong>
-          </td>
-          <td>
-            <% if @post.dinner_image.present? && @post.dinner_image.attached? %>
-              <%= image_tag url_for(@post.dinner_image), class: "meal-photo", width: 200, height: 200 %>
+            <% if @post.dinner_image.attached? %>
+              <%= image_tag(@post.dinner_image, size: "200x200") %>
             <% else %>
-              なし
+              No Image
             <% end %>
           </td>
         </tr>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <!-- 総摂取カロリー -->
+
+        <!-- その他の情報 -->
         <tr>
           <th>総摂取カロリー</th>
-          <td><%= number_with_delimiter(@post.total_calorie_intake) %> kcal</td>
+          <td><%= number_with_delimiter(@post.total_calories_intake) %> kcal</td>
         </tr>
         <tr>
           <th>消費カロリー</th>
           <td><%= number_with_delimiter(@post.calories_consumed) %> kcal</td>
         </tr>
         <tr>
-          <th>今日の体重</th>
-          <td><%= @post.weight %> kg</td>
-        </tr>
-        <tr>
           <th>カロリー収支</th>
           <td><%= number_with_delimiter(@post.total_calories) %> kcal</td>
         </tr>
         <tr>
-          <th>進捗度</th>
-          <td><%= @post.index_progress %> %</td>
+          <th>体重</th>
+          <td><%= @post.weight %> kg</td>
         </tr>
         <tr>
           <th>努力ポイント</th>
           <td><%= @post.effort_point %></td>
+        </tr>
+        <tr>
+          <th>進捗度</th>
+          <td><%= @post.index_progress %> %</td>
         </tr>
         <tr>
           <th>いいね数</th>

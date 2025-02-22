@@ -67,4 +67,8 @@ class UserSide::UsersController < ApplicationController
     end
   end  
 
+  def admin?
+    self.role == 'admin'  # roleは管理者かどうかを識別するための属性
+  end
+
 end

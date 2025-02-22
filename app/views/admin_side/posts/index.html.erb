@@ -13,6 +13,7 @@
             <thead class="table-secondary">
                 <tr>
                     <th class="col-2">投稿日</th>
+                    <th class="col-1">投稿ID</th>
                     <th class="col-2">ニックネーム</th>
                     <th class="col-1">体重</th>
                     <th class="col-1">進捗率(％)</th>
@@ -27,6 +28,7 @@
             <% @posts.each do |post| %>
               <tr>
                 <td><%= link_to post.created_at.strftime("%Y/%m/%d"), admin_side_post_path(post) %></td>
+                <td><%= post.id %></td>
                 <td><%= post.user.nickname %></td>
                 <td><%= post.weight %></td>
                 <td><%= post.index_progress %></td>

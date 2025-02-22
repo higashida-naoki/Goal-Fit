@@ -18,9 +18,7 @@ Rails.application.routes.draw do
   namespace :admin_side do
     get "top" => "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
-    resources :trainings, only: [:index, :new, :show, :edit, :create, :update]
-    resources :genres, only: [:index, :edit, :create, :update]
-    resources :posts, only: [:index, :show, :edit, :update] do
+    resources :posts, only: [:index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:destroy]
     end
     resources :foods, only: [:index, :new, :show, :edit, :create, :update, :destroy]
