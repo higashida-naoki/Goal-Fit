@@ -24,7 +24,7 @@
               <td><%= post.user.nickname %></td>
               <td><%= post.user.ideal_weight %></td>
               <td><%= post.weight %></td>
-              <td><%= number_with_delimiter(post.calorie_intake) %></td>
+              <td><%= number_with_delimiter(post.total_calories_intake) %></td>
               <td><%= number_with_delimiter(post.calories_consumed)%></td>
               <td class="<%= post.total_calories.negative? ? 'text-danger' : 'text-success' %>">
                 <%= number_with_delimiter(post.total_calories) %>
