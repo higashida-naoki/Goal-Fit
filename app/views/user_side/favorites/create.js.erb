@@ -1,0 +1,5 @@
+<% if request.referer&.include?(post_path(@post)) %>
+$('#favorite-<%= @post.id %>').html("<%= j(render 'user_side/favorites/table_btn',  post: @post, favorited_by_user: @favorited_by_user, favorites_count: @favorites_count) %>")
+<% else %>
+$('#favorite-<%= @post.id %>').html("<%= j(render 'user_side/favorites/btn',  post: @post, favorited_by_user: @favorited_by_user, favorites_count: @favorites_count) %>")
+<% end %>

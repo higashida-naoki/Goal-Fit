@@ -71,7 +71,7 @@
           <th>進捗度</th>
           <td><%= @post.index_progress %> %</td>
         </tr>
-        <tr>
+        <tr id=<%= "favorite-" + @post.id.to_s %> >
           <th>いいね数</th>
           <td><%= render "user_side/favorites/btn", post: @post, remote: true %></td>
         </tr>

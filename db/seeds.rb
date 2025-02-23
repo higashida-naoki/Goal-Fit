@@ -105,3 +105,6 @@ Exercise.create([
   { name: "ゴルフ", category: "スポーツ", target_body_part: "腕・体幹", calories: 180 },
   { name: "登山", category: "スポーツ", target_body_part: "全身", calories: 420 }
 ])
+
+Admin.create(email: 'admin@gmail', 
+             password: 'admin_side')
