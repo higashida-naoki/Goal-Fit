@@ -2,6 +2,11 @@ ja:
   devise:
     failure:
       inactive: "このアカウントは無効になっています。管理者にお問い合わせください。"
+    sessions:
+      signed_out: "ログアウトしました。"
+      signed_in: "ログインしました!"
+    registrations:
+      signed_up: "アカウント登録が完了しました!"
   activerecord:
     attributes:
       user:
