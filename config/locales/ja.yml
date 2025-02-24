@@ -2,3 +2,33 @@ ja:
   devise:
     failure:
       inactive: "このアカウントは無効になっています。管理者にお問い合わせください。"
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        nickname: ニックネーム
+        height: 身長
+        current_weight: 現在の体重
+        ideal_weight: 理想の体重
+        target_calorie_intake: 1日の目標摂取カロリー
+        target_calories_consumed: 1日の目標消費カロリー
+      post:
+        breakfast: 朝食
+        lunch: 昼食
+        dinner: 夕食
+        calories_consumed: 消費カロリー
+        calorie_intake: 摂取カロリー
+        total_calories: 総カロリー
+        breakfast_calories: 朝食のカロリー
+        lunch_calories: 昼食のカロリー
+        dinner_calories: 夕食のカロリー
+        progress: 進捗率
+        weight: 体重
+  errors:
+    messages:
+      not_saved: "保存できませんでした。以下のエラーを確認してください。"
+      blank: "を入力してください"
+      too_short: "は%{count}文字以上で入力してください"
+      taken: "はすでに存在します"

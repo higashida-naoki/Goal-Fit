@@ -1,14 +1,5 @@
 <h2>投稿編集</h2>
-
-<% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
+<%= render 'layouts/errors', obj: @post %>
 <%= form_with model: @post, url: admin_side_post_path(@post), method: :patch, local: true, html: { multipart: true } do |f| %>
   <table class="table">
 
