@@ -1,0 +1,35 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <%= form_with(model: @food, url: admin_side_foods_path, local: true) do |f| %>
+        <% if @food.errors.any? %>
+          <div class="alert alert-danger">
+            <h4>修正が必要な項目があります:</h4>
+            <ul>
+              <% @food.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :name, '食べ物' %>
+          <%= f.text_field :name %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :category, 'カテゴリー' %>
+          <%= f.text_field :category %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :calories, 'カロリー' %>
+          <%= f.number_field :calories %>
+        </div>
+
+        <%= f.submit food.persisted? ? '更新' : '追加', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

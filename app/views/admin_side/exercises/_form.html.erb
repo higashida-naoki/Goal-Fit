@@ -1,19 +1,25 @@
-<%= form_with(model: exercise, url: exercise.persisted? ? admin_side_exercise_path(exercise) : admin_side_exercises_path, local: true) do |f| %>
-  <div class="form-group">
-    <%= f.label :name, '運動名' %>
-    <%= f.text_field :name, class: 'form-control' %>
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <%= form_with(model: exercise, url: exercise.persisted? ? admin_side_exercise_path(exercise) : admin_side_exercises_path, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, '運動名' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :target_body_part, '効果のある部位' %>
+          <%= f.text_field :target_body_part, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :calories, '消費カロリー（kcal）' %>
+          <%= f.number_field :calories, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :category, 'カテゴリー' %>
+          <%= f.text_field :category, class: 'form-control' %>
+        </div>
+        <%= f.submit exercise.persisted? ? '更新' : '追加', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.label :target_body_part, '効果のある部位' %>
-    <%= f.text_field :target_body_part, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :calories, '消費カロリー（kcal）' %>
-    <%= f.number_field :calories, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :category, 'カテゴリー' %>
-    <%= f.text_field :category, class: 'form-control' %>
-  </div>
-  <%= f.submit exercise.persisted? ? '更新' : '追加', class: 'btn btn-primary' %>
-<% end %>
+</div>

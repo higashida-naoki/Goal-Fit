@@ -68,19 +68,19 @@ class User < ApplicationRecord
     end
   end
 
+  #ゲストログインの設定
   GUEST_USER_EMAIL = "guest@example.com"
-
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
   end
-
   def guest_user?
     email == GUEST_USER_EMAIL
   end
 
+  #フォロー・フォロワーの設定
   def follow(user)
     relationships.create(followed_id: user.id)
   end
