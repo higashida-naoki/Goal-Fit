@@ -45,9 +45,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :edit, :new, :create, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
-      #resource :favorite, only: [:create, :destroy]
     end
-    resources :trainings, only: [:index, :show]
     resources :foods, only: [:index]
     resources :exercises, only: [:index]
   end
