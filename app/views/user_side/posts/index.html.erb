@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-    <h2>投稿一覧</h2>
+      <h2>投稿一覧</h2>
       <table class="table">
         <thead>
           <tr>
             <th>投稿日</th>
+            <th></th>
             <th>ニックネーム</th>
             <th>理想の体重(kg)</th>
             <th>現在の体重(kg)</th>
@@ -21,6 +22,7 @@
           <% @posts.each do |post| %>
             <tr id="post_<%= post.id %>">
               <td><%= link_to post.created_at.strftime("%Y/%m/%d"), post_path(post) %></td>
+              <td><%= image_tag post.user.get_profile_image, class: "rounded-circle mb-3 profile-image", width: 50, height: 50 %></td>
               <td><%= post.user.nickname %></td>
               <td><%= post.user.ideal_weight %></td>
               <td><%= post.weight %></td>

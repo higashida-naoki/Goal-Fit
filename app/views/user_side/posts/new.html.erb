@@ -1,14 +1,20 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-3">
+      <h2>本日の投稿</h2>
+    </div>
+    <div class="col-md-5">
+      <a>(写真の投稿は必須ではございません。)</a>
+    </div>
+  </div>
     <div class="col-md-12">
       <%= render 'layouts/errors', obj: @post %>
 
-      <h2>本日の投稿</h2>
       <%= form_with model: @post, url: posts_path, local: true do |f| %>
         <table class="table">
           <!-- 朝食 -->
           <tr>
-            <th><%= f.label :breakfast, "朝食" %></th>
+            <th><%= f.label :breakfast, "朝食" %><span style="color: red;">※</span></th>
             <td><%= f.text_area :breakfast, placeholder: "朝食の内容" %></td>
             <td><%= f.number_field :breakfast_calories, class: "calorie-input" %> kcal</td>
             <td>
@@ -23,7 +29,7 @@
 
           <!-- 昼食 -->
           <tr>
-          <th><%= f.label :lunch, "昼食" %></th>
+          <th><%= f.label :lunch, "昼食" %><span style="color: red;">※</span></th>
           <td><%= f.text_area :lunch, placeholder: "昼食の内容" %></td>
           <td><%= f.number_field :lunch_calories, class: "calorie-input" %> kcal</td>
             <td>
@@ -37,7 +43,7 @@
 
           <!-- 夕食 -->
           <tr>
-          <th><%= f.label :denner, "夕食" %></th>
+          <th><%= f.label :denner, "夕食" %><span style="color: red;">※</span></th>
           <td><%= f.text_area :dinner, placeholder: "夕食の内容" %></td>
           <td><%= f.number_field :dinner_calories, class: "calorie-input" %> kcal</td>
             <td>
@@ -53,11 +59,11 @@
             <td id="total-calories-display">0 kcal</td>
           </tr>
           <tr>
-            <th><%= f.label :weight, "体重" %></th>
+            <th><%= f.label :weight, "体重" %><span style="color: red;">※</span></th>
             <td><%= f.number_field :weight, step: 0.01, min: 0, value: @post.weight %> kg</td>
           </tr>
           <tr>
-            <th><%= f.label :calories_consumed, "消費カロリー" %></th>
+            <th><%= f.label :calories_consumed, "消費カロリー" %><span style="color: red;">※</span></th>
             <td><%= f.text_field :calories_consumed %> kcal</td>
           </tr>
           <tr>
