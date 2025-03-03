@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_one_attached :breakfast_image
   has_one_attached :lunch_image
   has_one_attached :dinner_image
+  has_many :tags, dependent: :destroy
 
   #新規投稿時のバリデーション
   validates :breakfast, :breakfast_calories, :lunch, :lunch_calories, :dinner, :dinner_calories, :weight, presence: { message: 'は必須項目です。' }
