@@ -24,13 +24,19 @@ class UserSide::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tags = Vision.get_image_data(post_params[:breakfast_image])
-    tags = Vision.get_image_data(post_params[:lunch_image])
-    tags = Vision.get_image_data(post_params[:dinner_image])
+    breakfast_tags = Vision.get_image_data(post_params[:breakfast_image])
+    lunch_tags = Vision.get_image_data(post_params[:lunch_image])
+    dinner_tags = Vision.get_image_data(post_params[:dinner_image])
 
     if @post.save
-      tags.each do |tag|
-        @post.tags.create(name: tag)
+      breakfast_tags.each do |tag|
+        @post.breakfast_tags.create(name: tag)
+      end
+      lunch_tags.each do |tag|
+        @post.lunch_tags.create(name: tag)
+      end
+      dinner_tags.each do |tag|
+        @post.dinner_tags.create(name: tag)
       end
       redirect_to post_path(@post), notice: "投稿が完了しました！"
     else

@@ -31,6 +31,9 @@
           <td>
             <% if @post.breakfast_image.attached? %>
               <%= image_tag(@post.breakfast_image, size: "200x200") %>
+              <% @post.breakfast_tags.each do |tag| %>
+                <%= tag.name %>
+              <% end %>
             <% else %>
               No Image
             <% end %>

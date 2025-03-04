@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 2025_03_03_101036) do
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.integer "post_id"
+    t.integer "image_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -5,9 +5,12 @@ class Post < ApplicationRecord
   has_one_attached :breakfast_image
   has_one_attached :lunch_image
   has_one_attached :dinner_image
-  has_many :tags, dependent: :destroy
 
-  #新規投稿時のバリデーション
+  has_many :breakfast_tags, -> { where( image_type: :breakfast ) }, class_name: "Tag", dependent: :destroy
+  has_many :lunch_tags, -> { where( image_type: :lunch ) }, class_name: "Tag", dependent: :destroy
+  has_many :dinner_tags, -> { where( image_type: :dinner ) }, class_name: "Tag", dependent: :destroy
+
+  #新規投稿時のバリデーションß
   validates :breakfast, :breakfast_calories, :lunch, :lunch_calories, :dinner, :dinner_calories, :weight, presence: { message: 'は必須項目です。' }
 
   # すべてのカロリーの合計
