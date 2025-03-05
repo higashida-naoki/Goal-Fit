@@ -1,5 +1,8 @@
 <div class="container">
-  <h2 class="text-center mb-4">フォロワー</h2>
+  <%= link_to user_path(@user) do %>
+    <%= image_tag @user.get_profile_image, class: "rounded-circle mb-3 profile-image", size: "100x100" %>
+  <% end %>
+  <h2 class="text-center mb-4"><%= @user.nickname %>さんのフォロワー</h2>
   <div class="row">
       <% if @followers.present? %>
         <% @followers.each do |user| %>
