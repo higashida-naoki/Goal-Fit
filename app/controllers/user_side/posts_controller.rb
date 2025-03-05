@@ -47,12 +47,38 @@ class UserSide::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @user = @post.user
+  
+    # Vision APIで新しいタグを取得
+    breakfast_tags = Vision.get_image_data(post_params[:breakfast_image]) if post_params[:breakfast_image]
+    lunch_tags = Vision.get_image_data(post_params[:lunch_image]) if post_params[:lunch_image]
+    dinner_tags = Vision.get_image_data(post_params[:dinner_image]) if post_params[:dinner_image]
+  
     if @post.update(post_params)
+      # 既存のタグを削除
+      if post_params[:breakfast_image]
+        @post.breakfast_tags.destroy_all
+        breakfast_tags.each do |tag|
+          @post.breakfast_tags.create(name: tag)
+        end
+      end
+      if post_params[:lunch_image]
+      @post.lunch_tags.destroy_all
+        lunch_tags.each do |tag|
+          @post.lunch_tags.create(name: tag)
+        end
+      end
+      if post_params[:dinner_image]
+        @post.dinner_tags.destroy_all
+        dinner_tags.each do |tag|
+          @post.dinner_tags.create(name: tag)
+        end
+      end 
       redirect_to post_path(@post), notice: "投稿が更新されました！"
     else
       render "edit"
     end
   end
+  
 
   def destroy
     @post = Post.find(params[:id])
