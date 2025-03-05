@@ -32,7 +32,7 @@
             <% if @post.breakfast_image.attached? %>
               <%= image_tag(@post.breakfast_image, size: "200x200") %>
               <% @post.breakfast_tags.each do |tag| %>
-                <%= tag.name %>
+                <span class="tags"><%= tag.name %></span>
               <% end %>
             <% else %>
               No Image
@@ -48,6 +48,9 @@
           <td>
             <% if @post.lunch_image.attached? %>
               <%= image_tag(@post.lunch_image, size: "200x200") %>
+              <% @post.lunch_tags.each do |tag| %>
+                <span class="tags"><%= tag.name %></span>
+              <% end %>
             <% else %>
               No Image
             <% end %>
@@ -62,6 +65,9 @@
           <td>
             <% if @post.dinner_image.attached? %>
               <%= image_tag(@post.dinner_image, size: "200x200") %>
+              <% @post.dinner_tags.each do |tag| %>
+                <span class="tags"><%= tag.name %></span>
+              <% end %>
             <% else %>
               No Image
             <% end %>
@@ -113,4 +119,21 @@
   <%= render "user_side/post_comments/index", post: @post %>
   <%= render "user_side/post_comments/form", post: @post, post_comment: @post_comment %>
 </div>
+
+<style>
+.tags {
+  background-color: #337ab7;
+  font-weight: 500;
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+</style>
 
