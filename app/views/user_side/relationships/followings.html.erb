@@ -1,15 +1,15 @@
 <div class="container">
   <%= link_to user_path(@user) do %>
-    <%= image_tag @user.get_profile_image, class: "rounded-circle mb-3 profile-image", size: "100x100" %>
+    <%= image_tag @user.get_profile_image, class: "rounded-circle mb-3 btn-profile-image", size: "100x100" %>
   <% end %>
   <h2 class="text-center mb-4"><%= @user.nickname %>さんがフォロー中のユーザー</h2>
   <div class="row">
     <% if @followings.present? %>
       <% @followings.each do |user| %>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-4">
           <div class="card text-center">
             <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image, class: "rounded-circle mb-3 profile-image", size: "100x100" %>
+              <%= image_tag user.get_profile_image, class: "rounded-circle mb-3 btn-profile-image", size: "100x100" %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= user.nickname %></h5>
@@ -36,24 +36,3 @@
     <% end %>
   </div>
 </div>
-
-<style>
-  .profile-image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border: 2px solid black; /* 黒い枠線、幅2px */
-    margin-top: 10px; /* 上に10pxの余白を追加 */
-  }
-
-  .card {
-  border: 2px solid black; /* 黒い枠線 */
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 影を追加 */
-  transition: transform 0.3s ease-in-out; /* アニメーション効果 */
-}
-
-.card:hover {
-  transform: translateY(-5px); /* ホバー時にカードを少し持ち上げる */
-}
-
-</style>

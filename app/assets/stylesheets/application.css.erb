@@ -95,3 +95,29 @@ main {
 .profile-image {
     border: 1px solid black; /* 黒い枠線、幅1px */
   }
+
+  .btn-profile-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black; /* 黒い枠線、幅1px */
+    margin-top: 10px; /* 上に10pxの余白を追加 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6); /* シャドウで立体感を追加 */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* トランジションを追加 */
+  }
+  
+  .btn-profile-image:hover {
+      transform: scale(1.1); /* ホバー時に画像を少し拡大 */
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.8); /* ホバー時にシャドウを強調 */
+  }
+
+  .card {
+border: 2px solid black; /* 黒い枠線 */
+box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* 影を追加 */
+transition: transform 0.3s ease-in-out; /* アニメーション効果 */
+padding: 10px 20px;
+}
+
+.card:hover {
+transform: translateY(-5px); /* ホバー時にカードを少し持ち上げる */
+}
