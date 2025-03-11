@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   has_many :lunch_tags, -> { where( image_type: :lunch ) }, class_name: "Tag", dependent: :destroy
   has_many :dinner_tags, -> { where( image_type: :dinner ) }, class_name: "Tag", dependent: :destroy
 
-  #新規投稿時のバリデーションß
+  #新規投稿時のバリデーション
   validates :breakfast, :breakfast_calories, :lunch, :lunch_calories, :dinner, :dinner_calories, :weight, presence: { message: 'は必須項目です。' }
 
   # すべてのカロリーの合計
