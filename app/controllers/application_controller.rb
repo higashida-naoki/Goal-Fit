@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_side_top_path
     when User
-      user_path(current_user)
+      if resource.guest_user?
+        user_path(current_user)
+      else
+        user_path(current_user)
+      end
     else
       root_path
     end
