@@ -151,27 +151,59 @@
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    padding: 10px;
-    text-align: center;
-  }
+  background-color: #CC9966 !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
 
-  .navbar-logo {
-    height: 100px;
-    width: 100px;
-    margin-bottom: 10px;
-  }
+.navbar-logo {
+  height: 100px;
+  width: 100px;
+}
 
-  .navbar-logo img {
-    height: 100%;
-    width: 100%;
-  }
+.navbar-logo img {
+  height: 90%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #8B4513;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
 
-  .navbar-toggler {
-    width: 80%;
-    padding: 8px 20px;
-    font-size: 1rem;
-  }
+.navbar-logo img:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.8);
+}
+
+.navbar-toggler.menu-button {
+  width: 50px;
+  height: 50px;
+  font-size: 0.75rem;
+  padding: 0;
+  border-radius: 8px;
+  background-image: linear-gradient(to bottom right, #F8D486, #F5C66E);
+  border: none;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-toggler.menu-button:hover {
+  background-image: linear-gradient(to bottom right, #FADCA6, #F7CA6E);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-toggler.menu-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
 
   .menu {
     width: 100vw; /* モバイルでは全画面メニュー */
