@@ -17,7 +17,7 @@ class AdminSide::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "You have updated book successfully."
+      redirect_to admin_side_post_path, notice: "You have updated post successfully."
     else
       render "edit"
     end
@@ -26,7 +26,7 @@ class AdminSide::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-     redirect_to posts_path, notice: "successfully delete book!"
+     redirect_to admin_side_posts_path, notice: "successfully delete post!"
   end
 
   private
