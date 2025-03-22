@@ -149,6 +149,61 @@
   transform: translateY(3px); /* クリック時にボタンを下に動かす */
 }
 
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .navbar-logo {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 10px;
+  }
+
+  .navbar-logo img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .navbar-toggler {
+    width: 80%;
+    padding: 8px 20px;
+    font-size: 1rem;
+  }
+
+  .menu {
+    width: 100vw; /* モバイルでは全画面メニュー */
+    right: -100vw; /* 非表示位置を調整 */
+  }
+
+  .menu.open {
+    right: 0;
+  }
+
+  .menu ul {
+    margin-top: 40px;
+  }
+
+  .menu li {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+
+  .menu-link {
+    padding: 10px;
+    display: block;
+  }
+
+  .close-btn {
+    font-size: 28px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+}
   
+
 </style>
 
