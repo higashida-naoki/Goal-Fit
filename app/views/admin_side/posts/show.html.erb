@@ -80,7 +80,7 @@
           <td>💬 <%= @post.post_comments.count %></td>
         </tr> 
         <tr>
-          <td><%= link_to '編集する', edit_admin_side_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %> <%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
+          <td><%= link_to '編集する', edit_admin_side_post_path(@post), class: "btn btn-sm btn-success edit_post_#{@post.id}" %> <%= link_to '削除する', admin_side_post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%></td>
         </tr>
       </div>
     </div>

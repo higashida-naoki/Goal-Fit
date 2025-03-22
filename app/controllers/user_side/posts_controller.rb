@@ -1,5 +1,5 @@
 class UserSide::PostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:index, :show, :new, :create]
   
   def index
     @posts = Post.order(created_at: :desc).page(params[:page]).per(7)
